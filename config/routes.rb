@@ -1,4 +1,21 @@
 Rails.application.routes.draw do
+  # Routes for the Materium resource:
+  # CREATE
+  get "/materia/new", :controller => "materia", :action => "new"
+  post "/create_materium", :controller => "materia", :action => "create"
+
+  # READ
+  get "/materia", :controller => "materia", :action => "index"
+  get "/materia/:id", :controller => "materia", :action => "show"
+
+  # UPDATE
+  get "/materia/:id/edit", :controller => "materia", :action => "edit"
+  post "/update_materium/:id", :controller => "materia", :action => "update"
+
+  # DELETE
+  get "/delete_materium/:id", :controller => "materia", :action => "destroy"
+  #------------------------------
+
   # Routes for the Eje resource:
   # CREATE
   get "/ejes/new", :controller => "ejes", :action => "new"
