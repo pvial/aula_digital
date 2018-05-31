@@ -32,3 +32,34 @@
     </div>
   </div>
 </div>
+
+<!-- A Indicator has many excercises -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-info">
+        Excercises
+      </li>
+
+      <% @indicator.excercises.each do |excercise| %>
+        <li class="list-group-item">
+          <a href="/excercises/<%= excercise.id %>">
+            <%= excercise.created_at %>
+          </a>
+          <div class="btn-group btn-group-xs pull-right">
+            <a href="/excercises/<%= excercise.id %>" class="btn btn-primary">
+              <i class="fa fa-search-plus"></i>
+            </a>
+            <a href="/excercises/<%= excercise.id %>/edit" class="btn btn-warning">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="/delete_excercise/<%= excercise.id %>" class="btn btn-danger" rel="nofollow">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>

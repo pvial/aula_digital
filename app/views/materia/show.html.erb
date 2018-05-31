@@ -23,3 +23,65 @@
     </div>
   </div>
 </div>
+
+<!-- A Materium has many ejes -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-info">
+        Ejes
+      </li>
+
+      <% @materium.ejes.each do |eje| %>
+        <li class="list-group-item">
+          <a href="/ejes/<%= eje.id %>">
+            <%= eje.description %>
+          </a>
+          <div class="btn-group btn-group-xs pull-right">
+            <a href="/ejes/<%= eje.id %>" class="btn btn-primary">
+              <i class="fa fa-search-plus"></i>
+            </a>
+            <a href="/ejes/<%= eje.id %>/edit" class="btn btn-warning">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="/delete_eje/<%= eje.id %>" class="btn btn-danger" rel="nofollow">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
+<!-- A Materium has many levels -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-info">
+        Levels
+      </li>
+
+      <% @materium.levels.each do |user_level| %>
+        <li class="list-group-item">
+          <a href="/user_levels/<%= user_level.id %>">
+            <%= user_level.user_id %>
+          </a>
+          <div class="btn-group btn-group-xs pull-right">
+            <a href="/user_levels/<%= user_level.id %>" class="btn btn-primary">
+              <i class="fa fa-search-plus"></i>
+            </a>
+            <a href="/user_levels/<%= user_level.id %>/edit" class="btn btn-warning">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="/delete_user_level/<%= user_level.id %>" class="btn btn-danger" rel="nofollow">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>

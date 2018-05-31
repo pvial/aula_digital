@@ -35,3 +35,96 @@
     </div>
   </div>
 </div>
+
+<!-- A User has many tries -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-info">
+        Tries
+      </li>
+
+      <% @user.tries.each do |try| %>
+        <li class="list-group-item">
+          <a href="/tries/<%= try.id %>">
+            <%= try.user_id %>
+          </a>
+          <div class="btn-group btn-group-xs pull-right">
+            <a href="/tries/<%= try.id %>" class="btn btn-primary">
+              <i class="fa fa-search-plus"></i>
+            </a>
+            <a href="/tries/<%= try.id %>/edit" class="btn btn-warning">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="/delete_try/<%= try.id %>" class="btn btn-danger" rel="nofollow">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
+<!-- A User has many levels -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-info">
+        Levels
+      </li>
+
+      <% @user.levels.each do |user_level| %>
+        <li class="list-group-item">
+          <a href="/user_levels/<%= user_level.id %>">
+            <%= user_level.user_id %>
+          </a>
+          <div class="btn-group btn-group-xs pull-right">
+            <a href="/user_levels/<%= user_level.id %>" class="btn btn-primary">
+              <i class="fa fa-search-plus"></i>
+            </a>
+            <a href="/user_levels/<%= user_level.id %>/edit" class="btn btn-warning">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="/delete_user_level/<%= user_level.id %>" class="btn btn-danger" rel="nofollow">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
+<!-- A User has many excercises -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-info">
+        Excercises
+      </li>
+
+      <% @user.excercises.each do |excercise| %>
+        <li class="list-group-item">
+          <a href="/excercises/<%= excercise.id %>">
+            <%= excercise.created_at %>
+          </a>
+          <div class="btn-group btn-group-xs pull-right">
+            <a href="/excercises/<%= excercise.id %>" class="btn btn-primary">
+              <i class="fa fa-search-plus"></i>
+            </a>
+            <a href="/excercises/<%= excercise.id %>/edit" class="btn btn-warning">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="/delete_excercise/<%= excercise.id %>" class="btn btn-danger" rel="nofollow">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>

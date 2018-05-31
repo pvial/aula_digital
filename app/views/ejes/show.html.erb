@@ -26,3 +26,34 @@
     </div>
   </div>
 </div>
+
+<!-- A Eje has many objetivos -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-info">
+        Objetivos
+      </li>
+
+      <% @eje.objetivos.each do |objetivo| %>
+        <li class="list-group-item">
+          <a href="/objetivos/<%= objetivo.id %>">
+            <%= objetivo.description %>
+          </a>
+          <div class="btn-group btn-group-xs pull-right">
+            <a href="/objetivos/<%= objetivo.id %>" class="btn btn-primary">
+              <i class="fa fa-search-plus"></i>
+            </a>
+            <a href="/objetivos/<%= objetivo.id %>/edit" class="btn btn-warning">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="/delete_objetivo/<%= objetivo.id %>" class="btn btn-danger" rel="nofollow">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
