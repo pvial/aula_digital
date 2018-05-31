@@ -69,7 +69,7 @@
           Indicator
         </label>
 
-        <input type="text" id="indicator_id" name="indicator_id" placeholder="Indicator" class="form-control" value="<%= @excercise.indicator_id %>">
+        <%= select_tag(:indicator_id, options_from_collection_for_select(Indicator.all, :id, :description, @excercise.indicator_id), :class => "form-control") %>
       </div>
 
       <button class="btn btn-success">
