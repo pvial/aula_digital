@@ -1,4 +1,21 @@
 Rails.application.routes.draw do
+  # Routes for the Objetivo resource:
+  # CREATE
+  get "/objetivos/new", :controller => "objetivos", :action => "new"
+  post "/create_objetivo", :controller => "objetivos", :action => "create"
+
+  # READ
+  get "/objetivos", :controller => "objetivos", :action => "index"
+  get "/objetivos/:id", :controller => "objetivos", :action => "show"
+
+  # UPDATE
+  get "/objetivos/:id/edit", :controller => "objetivos", :action => "edit"
+  post "/update_objetivo/:id", :controller => "objetivos", :action => "update"
+
+  # DELETE
+  get "/delete_objetivo/:id", :controller => "objetivos", :action => "destroy"
+  #------------------------------
+
   # Routes for the Indicator resource:
   # CREATE
   get "/indicators/new", :controller => "indicators", :action => "new"

@@ -1,0 +1,73 @@
+<!-- Validation failure messages -->
+<% if @objetivo.errors.any? %>
+  <% @objetivo.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Add Objetivo</h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/create_objetivo" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for pre_objetivo_id -->
+      <div class="form-group">
+        <label for="pre_objetivo_id" class="control-label">
+          Pre objetivo
+        </label>
+
+        <input type="text" id="pre_objetivo_id" name="pre_objetivo_id" placeholder="Pre objetivo" class="form-control" value="<%= @objetivo.pre_objetivo_id %>">
+      </div>
+
+      <!-- Label and input for next_objetivo_id -->
+      <div class="form-group">
+        <label for="next_objetivo_id" class="control-label">
+          Next objetivo
+        </label>
+
+        <input type="text" id="next_objetivo_id" name="next_objetivo_id" placeholder="Next objetivo" class="form-control" value="<%= @objetivo.next_objetivo_id %>">
+      </div>
+
+      <!-- Label and input for eje_id -->
+      <div class="form-group">
+        <label for="eje_id" class="control-label">
+          Eje
+        </label>
+
+        <input type="text" id="eje_id" name="eje_id" placeholder="Eje" class="form-control" value="<%= @objetivo.eje_id %>">
+      </div>
+
+      <!-- Label and input for description -->
+      <div class="form-group">
+        <label for="description" class="control-label">
+          Description
+        </label>
+
+        <textarea id="description" name="description" placeholder="Description" class="form-control" rows="3"><%= @objetivo.description %></textarea>
+      </div>
+
+      <!-- Label and input for nivel_id -->
+      <div class="form-group">
+        <label for="nivel_id" class="control-label">
+          Nivel
+        </label>
+
+        <input type="text" id="nivel_id" name="nivel_id" placeholder="Nivel" class="form-control" value="<%= @objetivo.nivel_id %>">
+      </div>
+
+      <button class="btn btn-success">
+        Create Objetivo
+      </button>
+      or
+      <a href="/objetivos">Cancel</a>
+    </form>
+  </div>
+</div>
