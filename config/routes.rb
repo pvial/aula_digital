@@ -1,4 +1,21 @@
 Rails.application.routes.draw do
+  # Routes for the Nivel resource:
+  # CREATE
+  get "/nivels/new", :controller => "nivels", :action => "new"
+  post "/create_nivel", :controller => "nivels", :action => "create"
+
+  # READ
+  get "/nivels", :controller => "nivels", :action => "index"
+  get "/nivels/:id", :controller => "nivels", :action => "show"
+
+  # UPDATE
+  get "/nivels/:id/edit", :controller => "nivels", :action => "edit"
+  post "/update_nivel/:id", :controller => "nivels", :action => "update"
+
+  # DELETE
+  get "/delete_nivel/:id", :controller => "nivels", :action => "destroy"
+  #------------------------------
+
   # Routes for the User_level resource:
   # CREATE
   get "/user_levels/new", :controller => "user_levels", :action => "new"
