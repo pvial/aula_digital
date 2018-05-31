@@ -15,7 +15,7 @@
 
       <% @classrooms.each do |classroom| %>
       <tr>
-        <td><%= classroom.nivel_id %></td>
+        <td><%= classroom.nivel.intended_year %></td>
         <td>
           <a href="/classrooms/<%= classroom.id %>" class="btn btn-primary">Show</a>
           <a href="/classrooms/<%= classroom.id %>/edit" class="btn btn-warning">Edit</a>
