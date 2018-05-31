@@ -27,7 +27,13 @@
         <td><%= user.last_name %></td>
         <td><%= user.level_id %></td>
         <td><img src='<%= user.picture %>' class='img-responsive'></td>
-        <td><%= user.classroom.nivel_id %></td>
+        <td>
+          <% if user.classroom.present? %>
+            <a href="/classrooms/<%= user.classroom.id %>">
+              <%= user.classroom.nivel_id %>
+            </a>
+          <% end %>
+        </td>
         <td>
           <a href="/users/<%= user.id %>" class="btn btn-primary">Show</a>
         </td>

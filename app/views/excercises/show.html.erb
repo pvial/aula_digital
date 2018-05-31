@@ -21,7 +21,13 @@
       <dd><%= @excercise.question %></dd>
 
       <dt>Indicator</dt>
-      <dd><%= @excercise.indicator_id %></dd>
+      <dd>
+        <% if @excercise.indicator.present? %>
+          <a href="/indicators/<%= @excercise.indicator_id %>">
+            <%= @excercise.indicator.description %>
+          </a>
+        <% end %>
+      </dd>
 
     </dl>
 

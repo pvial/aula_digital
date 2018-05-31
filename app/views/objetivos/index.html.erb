@@ -21,9 +21,21 @@
       <tr>
         <td><%= objetivo.pre_objetivo_id %></td>
         <td><%= objetivo.next_objetivo_id %></td>
-        <td><%= objetivo.eje.description %></td>
+        <td>
+          <% if objetivo.eje.present? %>
+            <a href="/ejes/<%= objetivo.eje.id %>">
+              <%= objetivo.eje.description %>
+            </a>
+          <% end %>
+        </td>
         <td><%= objetivo.description %></td>
-        <td><%= objetivo.year.intended_year %></td>
+        <td>
+          <% if objetivo.year.present? %>
+            <a href="/nivels/<%= objetivo.year.id %>">
+              <%= objetivo.year.intended_year %>
+            </a>
+          <% end %>
+        </td>
         <td>
           <a href="/objetivos/<%= objetivo.id %>" class="btn btn-primary">Show</a>
           <a href="/objetivos/<%= objetivo.id %>/edit" class="btn btn-warning">Edit</a>

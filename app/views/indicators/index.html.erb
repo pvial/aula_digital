@@ -18,9 +18,27 @@
 
       <% @indicators.each do |indicator| %>
       <tr>
-        <td><%= indicator.preceding_indicator.description %></td>
-        <td><%= indicator.next_indicator.description %></td>
-        <td><%= indicator.objetivo.description %></td>
+        <td>
+          <% if indicator.preceding_indicator.present? %>
+            <a href="/indicators/<%= indicator.preceding_indicator.id %>">
+              <%= indicator.preceding_indicator.description %>
+            </a>
+          <% end %>
+        </td>
+        <td>
+          <% if indicator.next_indicator.present? %>
+            <a href="/indicators/<%= indicator.next_indicator.id %>">
+              <%= indicator.next_indicator.description %>
+            </a>
+          <% end %>
+        </td>
+        <td>
+          <% if indicator.objetivo.present? %>
+            <a href="/objetivos/<%= indicator.objetivo.id %>">
+              <%= indicator.objetivo.description %>
+            </a>
+          <% end %>
+        </td>
         <td><%= indicator.description %></td>
         <td>
           <a href="/indicators/<%= indicator.id %>" class="btn btn-primary">Show</a>

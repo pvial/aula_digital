@@ -15,7 +15,13 @@
 
       <% @classrooms.each do |classroom| %>
       <tr>
-        <td><%= classroom.nivel.intended_year %></td>
+        <td>
+          <% if classroom.nivel.present? %>
+            <a href="/nivels/<%= classroom.nivel.id %>">
+              <%= classroom.nivel.intended_year %>
+            </a>
+          <% end %>
+        </td>
         <td>
           <a href="/classrooms/<%= classroom.id %>" class="btn btn-primary">Show</a>
           <a href="/classrooms/<%= classroom.id %>/edit" class="btn btn-warning">Edit</a>

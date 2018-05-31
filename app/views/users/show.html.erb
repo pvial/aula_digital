@@ -24,7 +24,13 @@
       <dd><img src="<%= @user.picture %>" class="img-responsive"></dd>
 
       <dt>Class</dt>
-      <dd><%= @user.class_id %></dd>
+      <dd>
+        <% if @user.classroom.present? %>
+          <a href="/classrooms/<%= @user.class_id %>">
+            <%= @user.classroom.nivel_id %>
+          </a>
+        <% end %>
+      </dd>
 
     </dl>
 

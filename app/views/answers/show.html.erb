@@ -21,7 +21,13 @@
       <dd><%= @answer.wrong_4 %></dd>
 
       <dt>Excercise</dt>
-      <dd><%= @answer.excercise_id %></dd>
+      <dd>
+        <% if @answer.excercise.present? %>
+          <a href="/excercises/<%= @answer.excercise_id %>">
+            <%= @answer.excercise.created_at %>
+          </a>
+        <% end %>
+      </dd>
 
     </dl>
 

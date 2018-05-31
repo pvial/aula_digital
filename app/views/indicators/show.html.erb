@@ -6,13 +6,31 @@
   <div class="col-md-12 mb-2">
     <dl class="dl-horizontal">
       <dt>Pre indicator</dt>
-      <dd><%= @indicator.pre_indicator_id %></dd>
+      <dd>
+        <% if @indicator.preceding_indicator.present? %>
+          <a href="/indicators/<%= @indicator.pre_indicator_id %>">
+            <%= @indicator.preceding_indicator.description %>
+          </a>
+        <% end %>
+      </dd>
 
       <dt>Next indicator</dt>
-      <dd><%= @indicator.next_indicator_id %></dd>
+      <dd>
+        <% if @indicator.next_indicator.present? %>
+          <a href="/indicators/<%= @indicator.next_indicator_id %>">
+            <%= @indicator.next_indicator.description %>
+          </a>
+        <% end %>
+      </dd>
 
       <dt>Objetivo</dt>
-      <dd><%= @indicator.objetivo_id %></dd>
+      <dd>
+        <% if @indicator.objetivo.present? %>
+          <a href="/objetivos/<%= @indicator.objetivo_id %>">
+            <%= @indicator.objetivo.description %>
+          </a>
+        <% end %>
+      </dd>
 
       <dt>Description</dt>
       <dd><%= @indicator.description %></dd>

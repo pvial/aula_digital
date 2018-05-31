@@ -12,13 +12,25 @@
       <dd><%= @objetivo.next_objetivo_id %></dd>
 
       <dt>Eje</dt>
-      <dd><%= @objetivo.eje_id %></dd>
+      <dd>
+        <% if @objetivo.eje.present? %>
+          <a href="/ejes/<%= @objetivo.eje_id %>">
+            <%= @objetivo.eje.description %>
+          </a>
+        <% end %>
+      </dd>
 
       <dt>Description</dt>
       <dd><%= @objetivo.description %></dd>
 
       <dt>Nivel</dt>
-      <dd><%= @objetivo.nivel_id %></dd>
+      <dd>
+        <% if @objetivo.year.present? %>
+          <a href="/nivels/<%= @objetivo.nivel_id %>">
+            <%= @objetivo.year.intended_year %>
+          </a>
+        <% end %>
+      </dd>
 
     </dl>
 

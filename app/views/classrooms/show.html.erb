@@ -6,7 +6,13 @@
   <div class="col-md-12 mb-2">
     <dl class="dl-horizontal">
       <dt>Nivel</dt>
-      <dd><%= @classroom.nivel_id %></dd>
+      <dd>
+        <% if @classroom.nivel.present? %>
+          <a href="/nivels/<%= @classroom.nivel_id %>">
+            <%= @classroom.nivel.intended_year %>
+          </a>
+        <% end %>
+      </dd>
 
     </dl>
 

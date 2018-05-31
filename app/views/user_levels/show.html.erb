@@ -6,7 +6,13 @@
   <div class="col-md-12 mb-2">
     <dl class="dl-horizontal">
       <dt>User</dt>
-      <dd><%= @user_level.user_id %></dd>
+      <dd>
+        <% if @user_level.user.present? %>
+          <a href="/users/<%= @user_level.user_id %>">
+            <%= @user_level.user.email %>
+          </a>
+        <% end %>
+      </dd>
 
       <dt>General</dt>
       <dd><%= @user_level.general %></dd>
@@ -18,7 +24,13 @@
       <dd><%= @user_level.eje_2_placeholder %></dd>
 
       <dt>Materia</dt>
-      <dd><%= @user_level.materia_id %></dd>
+      <dd>
+        <% if @user_level.materia.present? %>
+          <a href="/materia/<%= @user_level.materia_id %>">
+            <%= @user_level.materia.description %>
+          </a>
+        <% end %>
+      </dd>
 
       <dt>Date</dt>
       <dd><%= @user_level.date %></dd>

@@ -25,7 +25,13 @@
         <td><%= excercise.dificultad %></td>
         <td><img src='<%= excercise.imagen %>' class='img-responsive'></td>
         <td><%= excercise.question %></td>
-        <td><%= excercise.indicator.description %></td>
+        <td>
+          <% if excercise.indicator.present? %>
+            <a href="/indicators/<%= excercise.indicator.id %>">
+              <%= excercise.indicator.description %>
+            </a>
+          <% end %>
+        </td>
         <td>
           <a href="/excercises/<%= excercise.id %>" class="btn btn-primary">Show</a>
           <a href="/excercises/<%= excercise.id %>/edit" class="btn btn-warning">Edit</a>

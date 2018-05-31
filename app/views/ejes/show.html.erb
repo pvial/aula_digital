@@ -6,7 +6,13 @@
   <div class="col-md-12 mb-2">
     <dl class="dl-horizontal">
       <dt>Materia</dt>
-      <dd><%= @eje.materia_id %></dd>
+      <dd>
+        <% if @eje.materia.present? %>
+          <a href="/materia/<%= @eje.materia_id %>">
+            <%= @eje.materia.description %>
+          </a>
+        <% end %>
+      </dd>
 
       <dt>Description</dt>
       <dd><%= @eje.description %></dd>

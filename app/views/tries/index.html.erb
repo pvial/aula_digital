@@ -19,8 +19,20 @@
 
       <% @tries.each do |try| %>
       <tr>
-        <td><%= try.user.email %></td>
-        <td><%= try.excercise.created_at %></td>
+        <td>
+          <% if try.user.present? %>
+            <a href="/users/<%= try.user.id %>">
+              <%= try.user.email %>
+            </a>
+          <% end %>
+        </td>
+        <td>
+          <% if try.excercise.present? %>
+            <a href="/excercises/<%= try.excercise.id %>">
+              <%= try.excercise.created_at %>
+            </a>
+          <% end %>
+        </td>
         <td><%= try.user_answer %></td>
         <td><%= try.correct %></td>
         <td><%= try.active %></td>
