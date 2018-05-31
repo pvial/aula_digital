@@ -69,7 +69,7 @@
           Excercise
         </label>
 
-        <input type="text" id="excercise_id" name="excercise_id" placeholder="Excercise" class="form-control" value="<%= @answer.excercise_id %>">
+        <%= select_tag(:excercise_id, options_from_collection_for_select(Excercise.all, :id, :created_at, @answer.excercise_id), :class => "form-control") %>
       </div>
 
       <button class="btn btn-success">
