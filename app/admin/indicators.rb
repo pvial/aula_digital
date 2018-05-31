@@ -1,4 +1,6 @@
 ActiveAdmin.register Indicator do
+
+ permit_params :pre_indicator_id, :next_indicator_id, :objetivo_id, :description
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
