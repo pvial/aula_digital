@@ -1,4 +1,21 @@
 Rails.application.routes.draw do
+  # Routes for the Answer resource:
+  # CREATE
+  get "/answers/new", :controller => "answers", :action => "new"
+  post "/create_answer", :controller => "answers", :action => "create"
+
+  # READ
+  get "/answers", :controller => "answers", :action => "index"
+  get "/answers/:id", :controller => "answers", :action => "show"
+
+  # UPDATE
+  get "/answers/:id/edit", :controller => "answers", :action => "edit"
+  post "/update_answer/:id", :controller => "answers", :action => "update"
+
+  # DELETE
+  get "/delete_answer/:id", :controller => "answers", :action => "destroy"
+  #------------------------------
+
   # Routes for the Excercise resource:
   # CREATE
   get "/excercises/new", :controller => "excercises", :action => "new"

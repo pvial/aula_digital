@@ -1,0 +1,82 @@
+<!-- Validation failure messages -->
+<% if @answer.errors.any? %>
+  <% @answer.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Add Answer</h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/create_answer" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for right_answer -->
+      <div class="form-group">
+        <label for="right_answer" class="control-label">
+          Right answer
+        </label>
+
+        <textarea id="right_answer" name="right_answer" placeholder="Right answer" class="form-control" rows="3"><%= @answer.right_answer %></textarea>
+      </div>
+
+      <!-- Label and input for wrong_1 -->
+      <div class="form-group">
+        <label for="wrong_1" class="control-label">
+          Wrong 1
+        </label>
+
+        <textarea id="wrong_1" name="wrong_1" placeholder="Wrong 1" class="form-control" rows="3"><%= @answer.wrong_1 %></textarea>
+      </div>
+
+      <!-- Label and input for wrong_2 -->
+      <div class="form-group">
+        <label for="wrong_2" class="control-label">
+          Wrong 2
+        </label>
+
+        <textarea id="wrong_2" name="wrong_2" placeholder="Wrong 2" class="form-control" rows="3"><%= @answer.wrong_2 %></textarea>
+      </div>
+
+      <!-- Label and input for wrong_3 -->
+      <div class="form-group">
+        <label for="wrong_3" class="control-label">
+          Wrong 3
+        </label>
+
+        <textarea id="wrong_3" name="wrong_3" placeholder="Wrong 3" class="form-control" rows="3"><%= @answer.wrong_3 %></textarea>
+      </div>
+
+      <!-- Label and input for wrong_4 -->
+      <div class="form-group">
+        <label for="wrong_4" class="control-label">
+          Wrong 4
+        </label>
+
+        <textarea id="wrong_4" name="wrong_4" placeholder="Wrong 4" class="form-control" rows="3"><%= @answer.wrong_4 %></textarea>
+      </div>
+
+      <!-- Label and input for excercise_id -->
+      <div class="form-group">
+        <label for="excercise_id" class="control-label">
+          Excercise
+        </label>
+
+        <input type="text" id="excercise_id" name="excercise_id" placeholder="Excercise" class="form-control" value="<%= @answer.excercise_id %>">
+      </div>
+
+      <button class="btn btn-success">
+        Create Answer
+      </button>
+      or
+      <a href="/answers">Cancel</a>
+    </form>
+  </div>
+</div>
