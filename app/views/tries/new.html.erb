@@ -33,7 +33,7 @@
           Excercise
         </label>
 
-        <input type="text" id="excercise_id" name="excercise_id" placeholder="Excercise" class="form-control" value="<%= @try.excercise_id %>">
+        <%= select_tag(:excercise_id, options_from_collection_for_select(Excercise.all, :id, :created_at, @try.excercise_id), :class => "form-control") %>
       </div>
 
       <!-- Label and input for user_answer -->
