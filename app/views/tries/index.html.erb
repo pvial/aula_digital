@@ -19,7 +19,7 @@
 
       <% @tries.each do |try| %>
       <tr>
-        <td><%= try.user_id %></td>
+        <td><%= try.user.email %></td>
         <td><%= try.excercise_id %></td>
         <td><%= try.user_answer %></td>
         <td><%= try.correct %></td>
