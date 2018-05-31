@@ -1,4 +1,6 @@
 ActiveAdmin.register Eje do
+
+ permit_params :materia_id, :description
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
