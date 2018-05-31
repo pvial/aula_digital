@@ -20,7 +20,7 @@
       <% @tries.each do |try| %>
       <tr>
         <td><%= try.user.email %></td>
-        <td><%= try.excercise_id %></td>
+        <td><%= try.excercise.created_at %></td>
         <td><%= try.user_answer %></td>
         <td><%= try.correct %></td>
         <td><%= try.active %></td>
