@@ -1,0 +1,37 @@
+<!-- Validation failure messages -->
+<% if @classroom.errors.any? %>
+  <% @classroom.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Edit Classroom #<%= @classroom.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/update_classroom/<%= @classroom.id %>" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for nivel_id -->
+      <div class="form-group">
+        <label for="nivel_id" class="control-label">
+          Nivel
+        </label>
+
+        <input type="text" id="nivel_id" name="nivel_id" placeholder="Nivel" class="form-control" value="<%= @classroom.nivel_id %>">
+      </div>
+
+      <button class="btn btn-warning">
+        Update Classroom
+      </button>
+      or
+      <a href="/classrooms/<%= @classroom.id %>">Cancel</a>
+    </form>
+  </div>
+</div>

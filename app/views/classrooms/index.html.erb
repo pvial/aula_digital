@@ -1,0 +1,28 @@
+<div class="page-header">
+  <h1>
+    Classrooms
+    <a href="/classrooms/new" class="btn btn-lg btn-success">New Classroom</a>
+  </h1>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-striped table-hover">
+      <tr>
+        <th>Nivel</th>
+        <th>Actions</th>
+      </tr>
+
+      <% @classrooms.each do |classroom| %>
+      <tr>
+        <td><%= classroom.nivel_id %></td>
+        <td>
+          <a href="/classrooms/<%= classroom.id %>" class="btn btn-primary">Show</a>
+          <a href="/classrooms/<%= classroom.id %>/edit" class="btn btn-warning">Edit</a>
+          <a href="/delete_classroom/<%= classroom.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

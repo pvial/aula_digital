@@ -1,4 +1,21 @@
 Rails.application.routes.draw do
+  # Routes for the Classroom resource:
+  # CREATE
+  get "/classrooms/new", :controller => "classrooms", :action => "new"
+  post "/create_classroom", :controller => "classrooms", :action => "create"
+
+  # READ
+  get "/classrooms", :controller => "classrooms", :action => "index"
+  get "/classrooms/:id", :controller => "classrooms", :action => "show"
+
+  # UPDATE
+  get "/classrooms/:id/edit", :controller => "classrooms", :action => "edit"
+  post "/update_classroom/:id", :controller => "classrooms", :action => "update"
+
+  # DELETE
+  get "/delete_classroom/:id", :controller => "classrooms", :action => "destroy"
+  #------------------------------
+
   # Routes for the Nivel resource:
   # CREATE
   get "/nivels/new", :controller => "nivels", :action => "new"
