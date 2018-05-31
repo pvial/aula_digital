@@ -1,6 +1,10 @@
 class User < ApplicationRecord
   # Direct associations
 
+  has_many   :levels,
+             :class_name => "UserLevel",
+             :dependent => :destroy
+
   has_many   :tries
 
   # Indirect associations
