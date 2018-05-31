@@ -1,0 +1,40 @@
+<div class="page-header">
+  <h3>Excercise #<%= @excercise.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12 mb-2">
+    <dl class="dl-horizontal">
+      <dt>Contenido</dt>
+      <dd><%= @excercise.contenido_id %></dd>
+
+      <dt>Skill</dt>
+      <dd><%= @excercise.skill %></dd>
+
+      <dt>Dificultad</dt>
+      <dd><%= @excercise.dificultad %></dd>
+
+      <dt>Imagen</dt>
+      <dd><%= @excercise.imagen %></dd>
+
+      <dt>Question</dt>
+      <dd><%= @excercise.question %></dd>
+
+      <dt>Indicator</dt>
+      <dd><%= @excercise.indicator_id %></dd>
+
+    </dl>
+
+    <div class="btn-group btn-group-justified">
+      <a href="/excercises" class="btn btn-primary">
+        Back
+      </a>
+      <a href="/excercises/<%= @excercise.id %>/edit" class="btn btn-warning">
+        Edit
+      </a>
+      <a href="/delete_excercise/<%= @excercise.id %>" class="btn btn-danger" rel="nofollow">
+        Delete
+      </a>
+    </div>
+  </div>
+</div>
