@@ -42,7 +42,7 @@
           Eje
         </label>
 
-        <input type="text" id="eje_id" name="eje_id" placeholder="Eje" class="form-control" value="<%= @objetivo.eje_id %>">
+        <%= select_tag(:eje_id, options_from_collection_for_select(Eje.all, :id, :description, @objetivo.eje_id), :class => "form-control") %>
       </div>
 
       <!-- Label and input for description -->
