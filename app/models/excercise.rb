@@ -11,6 +11,10 @@ class Excercise < ApplicationRecord
 
   # Indirect associations
 
+  has_many   :users,
+             :through => :tries,
+             :source => :user
+
   # Validations
 
 end

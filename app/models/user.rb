@@ -13,6 +13,10 @@ class User < ApplicationRecord
 
   # Indirect associations
 
+  has_many   :excercises,
+             :through => :tries,
+             :source => :excercise
+
   # Validations
 
   # Include default devise modules. Others available are:
