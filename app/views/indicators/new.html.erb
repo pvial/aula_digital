@@ -24,7 +24,7 @@
           Pre indicator
         </label>
 
-        <input type="text" id="pre_indicator_id" name="pre_indicator_id" placeholder="Pre indicator" class="form-control" value="<%= @indicator.pre_indicator_id %>">
+        <%= select_tag(:pre_indicator_id, options_from_collection_for_select(Indicator.all, :id, :description, @indicator.pre_indicator_id), :class => "form-control") %>
       </div>
 
       <!-- Label and input for next_indicator_id -->
