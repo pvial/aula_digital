@@ -16,7 +16,7 @@
 
       <% @ejes.each do |eje| %>
       <tr>
-        <td><%= eje.materia_id %></td>
+        <td><%= eje.materia.description %></td>
         <td><%= eje.description %></td>
         <td>
           <a href="/ejes/<%= eje.id %>" class="btn btn-primary">Show</a>
