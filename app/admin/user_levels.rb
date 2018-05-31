@@ -1,4 +1,6 @@
 ActiveAdmin.register UserLevel do
+
+ permit_params :user_id, :general, :eje_1_placeholder, :eje_2_placeholder, :materia_id, :date
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
