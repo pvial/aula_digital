@@ -1,6 +1,6 @@
 class ExcercisesController < ApplicationController
   def index
-    @excercises = Excercise.all
+    @excercises = Excercise.page(params[:page]).per(10)
 
     render("excercises/index.html.erb")
   end

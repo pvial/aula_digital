@@ -1,6 +1,6 @@
 class ObjetivosController < ApplicationController
   def index
-    @objetivos = Objetivo.all
+    @objetivos = Objetivo.page(params[:page]).per(10)
 
     render("objetivos/index.html.erb")
   end

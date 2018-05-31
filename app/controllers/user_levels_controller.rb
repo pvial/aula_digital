@@ -1,6 +1,6 @@
 class UserLevelsController < ApplicationController
   def index
-    @user_levels = UserLevel.all
+    @user_levels = UserLevel.page(params[:page]).per(10)
 
     render("user_levels/index.html.erb")
   end

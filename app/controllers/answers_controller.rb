@@ -1,6 +1,6 @@
 class AnswersController < ApplicationController
   def index
-    @answers = Answer.all
+    @answers = Answer.page(params[:page]).per(10)
 
     render("answers/index.html.erb")
   end

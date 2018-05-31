@@ -1,6 +1,6 @@
 class IndicatorsController < ApplicationController
   def index
-    @indicators = Indicator.all
+    @indicators = Indicator.page(params[:page]).per(10)
 
     render("indicators/index.html.erb")
   end

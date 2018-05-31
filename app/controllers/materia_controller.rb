@@ -1,6 +1,6 @@
 class MateriaController < ApplicationController
   def index
-    @materia = Materium.all
+    @materia = Materium.page(params[:page]).per(10)
 
     render("materia/index.html.erb")
   end
