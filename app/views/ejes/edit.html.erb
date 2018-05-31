@@ -24,7 +24,7 @@
           Materia
         </label>
 
-        <input type="text" id="materia_id" name="materia_id" placeholder="Materia" class="form-control" value="<%= @eje.materia_id %>">
+        <%= select_tag(:materia_id, options_from_collection_for_select(Materium.all, :id, :description, @eje.materia_id), :class => "form-control") %>
       </div>
 
       <!-- Label and input for description -->
