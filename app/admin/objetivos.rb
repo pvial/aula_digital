@@ -1,4 +1,6 @@
 ActiveAdmin.register Objetivo do
+
+ permit_params :pre_objetivo_id, :next_objetivo_id, :eje_id, :description, :nivel_id
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
