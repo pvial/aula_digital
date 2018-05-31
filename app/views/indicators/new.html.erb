@@ -33,7 +33,7 @@
           Next indicator
         </label>
 
-        <input type="text" id="next_indicator_id" name="next_indicator_id" placeholder="Next indicator" class="form-control" value="<%= @indicator.next_indicator_id %>">
+        <%= select_tag(:next_indicator_id, options_from_collection_for_select(Indicator.all, :id, :description, @indicator.next_indicator_id), :class => "form-control") %>
       </div>
 
       <!-- Label and input for objetivo_id -->
