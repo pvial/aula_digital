@@ -50,8 +50,6 @@ class TriesController < ApplicationController
 
   def update
     @try = Try.find(params[:id])
-
-    @try.user_id = params[:user_id]
     @try.excercise_id = params[:excercise_id]
     @try.user_answer = params[:user_answer]
     @try.correct = params[:correct]
