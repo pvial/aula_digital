@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root :to => "excercises#index"
   # Routes for the Classroom resource:
   # CREATE
   get "/classrooms/new", :controller => "classrooms", :action => "new"
