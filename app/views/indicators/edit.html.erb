@@ -1,0 +1,64 @@
+<!-- Validation failure messages -->
+<% if @indicator.errors.any? %>
+  <% @indicator.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Edit Indicator #<%= @indicator.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/update_indicator/<%= @indicator.id %>" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for pre_indicator_id -->
+      <div class="form-group">
+        <label for="pre_indicator_id" class="control-label">
+          Pre indicator
+        </label>
+
+        <input type="text" id="pre_indicator_id" name="pre_indicator_id" placeholder="Pre indicator" class="form-control" value="<%= @indicator.pre_indicator_id %>">
+      </div>
+
+      <!-- Label and input for next_indicator_id -->
+      <div class="form-group">
+        <label for="next_indicator_id" class="control-label">
+          Next indicator
+        </label>
+
+        <input type="text" id="next_indicator_id" name="next_indicator_id" placeholder="Next indicator" class="form-control" value="<%= @indicator.next_indicator_id %>">
+      </div>
+
+      <!-- Label and input for objetivo_id -->
+      <div class="form-group">
+        <label for="objetivo_id" class="control-label">
+          Objetivo
+        </label>
+
+        <input type="text" id="objetivo_id" name="objetivo_id" placeholder="Objetivo" class="form-control" value="<%= @indicator.objetivo_id %>">
+      </div>
+
+      <!-- Label and input for description -->
+      <div class="form-group">
+        <label for="description" class="control-label">
+          Description
+        </label>
+
+        <textarea id="description" name="description" placeholder="Description" class="form-control" rows="3"><%= @indicator.description %></textarea>
+      </div>
+
+      <button class="btn btn-warning">
+        Update Indicator
+      </button>
+      or
+      <a href="/indicators/<%= @indicator.id %>">Cancel</a>
+    </form>
+  </div>
+</div>

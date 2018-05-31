@@ -1,0 +1,34 @@
+<div class="page-header">
+  <h1>
+    Indicators
+    <a href="/indicators/new" class="btn btn-lg btn-success">New Indicator</a>
+  </h1>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-striped table-hover">
+      <tr>
+        <th>Pre indicator</th>
+        <th>Next indicator</th>
+        <th>Objetivo</th>
+        <th>Description</th>
+        <th>Actions</th>
+      </tr>
+
+      <% @indicators.each do |indicator| %>
+      <tr>
+        <td><%= indicator.pre_indicator_id %></td>
+        <td><%= indicator.next_indicator_id %></td>
+        <td><%= indicator.objetivo_id %></td>
+        <td><%= indicator.description %></td>
+        <td>
+          <a href="/indicators/<%= indicator.id %>" class="btn btn-primary">Show</a>
+          <a href="/indicators/<%= indicator.id %>/edit" class="btn btn-warning">Edit</a>
+          <a href="/delete_indicator/<%= indicator.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
