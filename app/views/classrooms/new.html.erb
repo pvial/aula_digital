@@ -24,7 +24,7 @@
           Nivel
         </label>
 
-        <input type="text" id="nivel_id" name="nivel_id" placeholder="Nivel" class="form-control" value="<%= @classroom.nivel_id %>">
+        <%= select_tag(:nivel_id, options_from_collection_for_select(Nivel.all, :id, :intended_year, @classroom.nivel_id), :class => "form-control") %>
       </div>
 
       <button class="btn btn-success">
