@@ -18,7 +18,7 @@
 
       <% @indicators.each do |indicator| %>
       <tr>
-        <td><%= indicator.pre_indicator_id %></td>
+        <td><%= indicator.preceding_indicator.description %></td>
         <td><%= indicator.next_indicator_id %></td>
         <td><%= indicator.objetivo_id %></td>
         <td><%= indicator.description %></td>
