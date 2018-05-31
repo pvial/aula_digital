@@ -1,6 +1,6 @@
 class TriesController < ApplicationController
   def index
-    @tries = Try.all
+    @tries = current_user.tries.page(params[:page]).per(10)
 
     render("tries/index.html.erb")
   end
