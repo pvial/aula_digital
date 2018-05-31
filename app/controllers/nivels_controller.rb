@@ -1,6 +1,7 @@
 class NivelsController < ApplicationController
   def index
-    @nivels = Nivel.page(params[:page]).per(10)
+    @q = Nivel.ransack(params[:q])
+    @nivels = @q.result(:distinct => true).includes(:objetivos, :classrooms).page(params[:page]).per(10)
 
     render("nivels/index.html.erb")
   end

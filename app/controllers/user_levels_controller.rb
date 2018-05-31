@@ -1,6 +1,7 @@
 class UserLevelsController < ApplicationController
   def index
-    @user_levels = UserLevel.page(params[:page]).per(10)
+    @q = UserLevel.ransack(params[:q])
+    @user_levels = @q.result(:distinct => true).includes(:user, :materia).page(params[:page]).per(10)
 
     render("user_levels/index.html.erb")
   end

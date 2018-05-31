@@ -1,6 +1,7 @@
 class MateriaController < ApplicationController
   def index
-    @materia = Materium.page(params[:page]).per(10)
+    @q = Materium.ransack(params[:q])
+    @materia = @q.result(:distinct => true).includes(:ejes, :levels).page(params[:page]).per(10)
 
     render("materia/index.html.erb")
   end

@@ -1,6 +1,7 @@
 class EjesController < ApplicationController
   def index
-    @ejes = Eje.page(params[:page]).per(10)
+    @q = Eje.ransack(params[:q])
+    @ejes = @q.result(:distinct => true).includes(:objetivos, :materia).page(params[:page]).per(10)
 
     render("ejes/index.html.erb")
   end

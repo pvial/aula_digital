@@ -1,6 +1,7 @@
 class TriesController < ApplicationController
   def index
-    @tries = current_user.tries.page(params[:page]).per(10)
+    @q = current_user.tries.ransack(params[:q])
+    @tries = @q.result(:distinct => true).includes(:excercise, :user).page(params[:page]).per(10)
 
     render("tries/index.html.erb")
   end

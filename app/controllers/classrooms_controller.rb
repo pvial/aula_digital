@@ -1,6 +1,7 @@
 class ClassroomsController < ApplicationController
   def index
-    @classrooms = Classroom.page(params[:page]).per(10)
+    @q = Classroom.ransack(params[:q])
+    @classrooms = @q.result(:distinct => true).includes(:nivel, :users).page(params[:page]).per(10)
 
     render("classrooms/index.html.erb")
   end

@@ -1,6 +1,7 @@
 class ExcercisesController < ApplicationController
   def index
-    @excercises = Excercise.page(params[:page]).per(10)
+    @q = Excercise.ransack(params[:q])
+    @excercises = @q.result(:distinct => true).includes(:tries, :answer, :indicator, :users).page(params[:page]).per(10)
 
     render("excercises/index.html.erb")
   end

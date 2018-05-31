@@ -1,6 +1,7 @@
 class ObjetivosController < ApplicationController
   def index
-    @objetivos = Objetivo.page(params[:page]).per(10)
+    @q = Objetivo.ransack(params[:q])
+    @objetivos = @q.result(:distinct => true).includes(:indicators, :eje, :year).page(params[:page]).per(10)
 
     render("objetivos/index.html.erb")
   end
