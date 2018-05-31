@@ -1,4 +1,21 @@
 Rails.application.routes.draw do
+  # Routes for the Eje resource:
+  # CREATE
+  get "/ejes/new", :controller => "ejes", :action => "new"
+  post "/create_eje", :controller => "ejes", :action => "create"
+
+  # READ
+  get "/ejes", :controller => "ejes", :action => "index"
+  get "/ejes/:id", :controller => "ejes", :action => "show"
+
+  # UPDATE
+  get "/ejes/:id/edit", :controller => "ejes", :action => "edit"
+  post "/update_eje/:id", :controller => "ejes", :action => "update"
+
+  # DELETE
+  get "/delete_eje/:id", :controller => "ejes", :action => "destroy"
+  #------------------------------
+
   # Routes for the Objetivo resource:
   # CREATE
   get "/objetivos/new", :controller => "objetivos", :action => "new"

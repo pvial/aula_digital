@@ -1,0 +1,28 @@
+<div class="page-header">
+  <h3>Eje #<%= @eje.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12 mb-2">
+    <dl class="dl-horizontal">
+      <dt>Materia</dt>
+      <dd><%= @eje.materia_id %></dd>
+
+      <dt>Description</dt>
+      <dd><%= @eje.description %></dd>
+
+    </dl>
+
+    <div class="btn-group btn-group-justified">
+      <a href="/ejes" class="btn btn-primary">
+        Back
+      </a>
+      <a href="/ejes/<%= @eje.id %>/edit" class="btn btn-warning">
+        Edit
+      </a>
+      <a href="/delete_eje/<%= @eje.id %>" class="btn btn-danger" rel="nofollow">
+        Delete
+      </a>
+    </div>
+  </div>
+</div>
