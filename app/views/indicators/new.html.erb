@@ -42,7 +42,7 @@
           Objetivo
         </label>
 
-        <input type="text" id="objetivo_id" name="objetivo_id" placeholder="Objetivo" class="form-control" value="<%= @indicator.objetivo_id %>">
+        <%= select_tag(:objetivo_id, options_from_collection_for_select(Objetivo.all, :id, :description, @indicator.objetivo_id), :class => "form-control") %>
       </div>
 
       <!-- Label and input for description -->
