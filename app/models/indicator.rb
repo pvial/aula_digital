@@ -1,6 +1,8 @@
 class Indicator < ApplicationRecord
   # Direct associations
 
+  belongs_to :objetivo
+
   belongs_to :next_indicator,
              :class_name => "Indicator"
 
