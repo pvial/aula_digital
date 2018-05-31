@@ -1,6 +1,10 @@
 class User < ApplicationRecord
   # Direct associations
 
+  belongs_to :classroom,
+             :required => false,
+             :foreign_key => "class_id"
+
   has_many   :levels,
              :class_name => "UserLevel",
              :dependent => :destroy
