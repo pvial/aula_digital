@@ -6,6 +6,7 @@ class ObjetivosController < ApplicationController
   end
 
   def show
+    @indicator = Indicator.new
     @objetivo = Objetivo.find(params[:id])
 
     render("objetivos/show.html.erb")

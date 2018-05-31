@@ -6,6 +6,7 @@ class ExcercisesController < ApplicationController
   end
 
   def show
+    @try = Try.new
     @excercise = Excercise.find(params[:id])
 
     render("excercises/show.html.erb")

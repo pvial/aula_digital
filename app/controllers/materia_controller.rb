@@ -6,6 +6,8 @@ class MateriaController < ApplicationController
   end
 
   def show
+    @user_level = UserLevel.new
+    @eje = Eje.new
     @materium = Materium.find(params[:id])
 
     render("materia/show.html.erb")

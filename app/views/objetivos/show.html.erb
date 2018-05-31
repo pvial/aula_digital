@@ -63,6 +63,47 @@
           </div>
         </li>
       <% end %>
+
+      <li class="list-group-item">
+        <form action="/create_indicator" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for pre_indicator_id -->
+      <div class="form-group">
+        <label for="pre_indicator_id" class="control-label">
+          Pre indicator
+        </label>
+
+        <%= select_tag(:pre_indicator_id, options_from_collection_for_select(Indicator.all, :id, :description), :class => "form-control") %>
+      </div>
+
+      <!-- Label and input for next_indicator_id -->
+      <div class="form-group">
+        <label for="next_indicator_id" class="control-label">
+          Next indicator
+        </label>
+
+        <%= select_tag(:next_indicator_id, options_from_collection_for_select(Indicator.all, :id, :description), :class => "form-control") %>
+      </div>
+
+      <!-- Label and input for objetivo_id -->
+      <input type="hidden" name="objetivo_id" value="<%= @objetivo.id %>">
+
+      <!-- Label and input for description -->
+      <div class="form-group">
+        <label for="description" class="control-label">
+          Description
+        </label>
+
+        <textarea id="description" name="description" placeholder="Description" class="form-control" rows="3"></textarea>
+      </div>
+
+      <button class="btn btn-block btn-success">
+        Create Indicator
+      </button>
+    </form>
+      </li>
     </ul>
   </div>
 </div>

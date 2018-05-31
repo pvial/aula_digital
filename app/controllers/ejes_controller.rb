@@ -6,6 +6,7 @@ class EjesController < ApplicationController
   end
 
   def show
+    @objetivo = Objetivo.new
     @eje = Eje.find(params[:id])
 
     render("ejes/show.html.erb")

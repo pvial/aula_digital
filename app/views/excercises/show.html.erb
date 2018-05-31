@@ -66,6 +66,48 @@
           </div>
         </li>
       <% end %>
+
+      <li class="list-group-item">
+        <form action="/create_try" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for user_id -->
+      <input type="hidden" name="user_id" value="<%= current_user.id %>">
+
+      <!-- Label and input for excercise_id -->
+      <input type="hidden" name="excercise_id" value="<%= @excercise.id %>">
+
+      <!-- Label and input for user_answer -->
+      <div class="form-group">
+        <label for="user_answer" class="control-label">
+          User answer
+        </label>
+
+        <input type="text" id="user_answer" name="user_answer" placeholder="User answer" class="form-control" value="">
+      </div>
+
+      <!-- Label and input for correct -->
+      <div class="checkbox">
+        <label for="correct">
+          <input type="checkbox" id="correct" name="correct" value="1" <%= "checked" if @try.correct %>>
+          Correct
+        </label>
+      </div>
+
+      <!-- Label and input for active -->
+      <div class="checkbox">
+        <label for="active">
+          <input type="checkbox" id="active" name="active" value="1" <%= "checked" if @try.active %>>
+          Active
+        </label>
+      </div>
+
+      <button class="btn btn-block btn-success">
+        Create Try
+      </button>
+    </form>
+      </li>
     </ul>
   </div>
 </div>

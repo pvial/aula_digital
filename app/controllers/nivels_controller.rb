@@ -6,6 +6,8 @@ class NivelsController < ApplicationController
   end
 
   def show
+    @classroom = Classroom.new
+    @objetivo = Objetivo.new
     @nivel = Nivel.find(params[:id])
 
     render("nivels/show.html.erb")

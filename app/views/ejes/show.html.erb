@@ -54,6 +54,56 @@
           </div>
         </li>
       <% end %>
+
+      <li class="list-group-item">
+        <form action="/create_objetivo" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for pre_objetivo_id -->
+      <div class="form-group">
+        <label for="pre_objetivo_id" class="control-label">
+          Pre objetivo
+        </label>
+
+        <input type="text" id="pre_objetivo_id" name="pre_objetivo_id" placeholder="Pre objetivo" class="form-control" value="">
+      </div>
+
+      <!-- Label and input for next_objetivo_id -->
+      <div class="form-group">
+        <label for="next_objetivo_id" class="control-label">
+          Next objetivo
+        </label>
+
+        <input type="text" id="next_objetivo_id" name="next_objetivo_id" placeholder="Next objetivo" class="form-control" value="">
+      </div>
+
+      <!-- Label and input for eje_id -->
+      <input type="hidden" name="eje_id" value="<%= @eje.id %>">
+
+      <!-- Label and input for description -->
+      <div class="form-group">
+        <label for="description" class="control-label">
+          Description
+        </label>
+
+        <textarea id="description" name="description" placeholder="Description" class="form-control" rows="3"></textarea>
+      </div>
+
+      <!-- Label and input for nivel_id -->
+      <div class="form-group">
+        <label for="nivel_id" class="control-label">
+          Nivel
+        </label>
+
+        <%= select_tag(:nivel_id, options_from_collection_for_select(Nivel.all, :id, :intended_year), :class => "form-control") %>
+      </div>
+
+      <button class="btn btn-block btn-success">
+        Create Objetivo
+      </button>
+    </form>
+      </li>
     </ul>
   </div>
 </div>
