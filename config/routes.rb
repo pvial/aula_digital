@@ -1,4 +1,21 @@
 Rails.application.routes.draw do
+  # Routes for the User_level resource:
+  # CREATE
+  get "/user_levels/new", :controller => "user_levels", :action => "new"
+  post "/create_user_level", :controller => "user_levels", :action => "create"
+
+  # READ
+  get "/user_levels", :controller => "user_levels", :action => "index"
+  get "/user_levels/:id", :controller => "user_levels", :action => "show"
+
+  # UPDATE
+  get "/user_levels/:id/edit", :controller => "user_levels", :action => "edit"
+  post "/update_user_level/:id", :controller => "user_levels", :action => "update"
+
+  # DELETE
+  get "/delete_user_level/:id", :controller => "user_levels", :action => "destroy"
+  #------------------------------
+
   # Routes for the Materium resource:
   # CREATE
   get "/materia/new", :controller => "materia", :action => "new"

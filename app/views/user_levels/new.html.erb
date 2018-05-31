@@ -1,0 +1,82 @@
+<!-- Validation failure messages -->
+<% if @user_level.errors.any? %>
+  <% @user_level.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Add User Level</h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/create_user_level" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for user_id -->
+      <div class="form-group">
+        <label for="user_id" class="control-label">
+          User
+        </label>
+
+        <input type="text" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= @user_level.user_id %>">
+      </div>
+
+      <!-- Label and input for general -->
+      <div class="form-group">
+        <label for="general" class="control-label">
+          General
+        </label>
+
+        <input type="text" id="general" name="general" placeholder="General" class="form-control" value="<%= @user_level.general %>">
+      </div>
+
+      <!-- Label and input for eje_1_placeholder -->
+      <div class="form-group">
+        <label for="eje_1_placeholder" class="control-label">
+          Eje 1 placeholder
+        </label>
+
+        <input type="text" id="eje_1_placeholder" name="eje_1_placeholder" placeholder="Eje 1 placeholder" class="form-control" value="<%= @user_level.eje_1_placeholder %>">
+      </div>
+
+      <!-- Label and input for eje_2_placeholder -->
+      <div class="form-group">
+        <label for="eje_2_placeholder" class="control-label">
+          Eje 2 placeholder
+        </label>
+
+        <input type="text" id="eje_2_placeholder" name="eje_2_placeholder" placeholder="Eje 2 placeholder" class="form-control" value="<%= @user_level.eje_2_placeholder %>">
+      </div>
+
+      <!-- Label and input for materia_id -->
+      <div class="form-group">
+        <label for="materia_id" class="control-label">
+          Materia
+        </label>
+
+        <input type="text" id="materia_id" name="materia_id" placeholder="Materia" class="form-control" value="<%= @user_level.materia_id %>">
+      </div>
+
+      <!-- Label and input for date -->
+      <div class="form-group">
+        <label for="date" class="control-label">
+          Date
+        </label>
+
+        <input type="text" id="date" name="date" placeholder="Date" class="form-control" value="<%= @user_level.date %>">
+      </div>
+
+      <button class="btn btn-success">
+        Create User Level
+      </button>
+      or
+      <a href="/user_levels">Cancel</a>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,38 @@
+<div class="page-header">
+  <h1>
+    User levels
+    <a href="/user_levels/new" class="btn btn-lg btn-success">New User level</a>
+  </h1>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-striped table-hover">
+      <tr>
+        <th>User</th>
+        <th>General</th>
+        <th>Eje 1 placeholder</th>
+        <th>Eje 2 placeholder</th>
+        <th>Materia</th>
+        <th>Date</th>
+        <th>Actions</th>
+      </tr>
+
+      <% @user_levels.each do |user_level| %>
+      <tr>
+        <td><%= user_level.user_id %></td>
+        <td><%= user_level.general %></td>
+        <td><%= user_level.eje_1_placeholder %></td>
+        <td><%= user_level.eje_2_placeholder %></td>
+        <td><%= user_level.materia_id %></td>
+        <td><%= user_level.date %></td>
+        <td>
+          <a href="/user_levels/<%= user_level.id %>" class="btn btn-primary">Show</a>
+          <a href="/user_levels/<%= user_level.id %>/edit" class="btn btn-warning">Edit</a>
+          <a href="/delete_user_level/<%= user_level.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

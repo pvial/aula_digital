@@ -1,0 +1,40 @@
+<div class="page-header">
+  <h3>User Level #<%= @user_level.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12 mb-2">
+    <dl class="dl-horizontal">
+      <dt>User</dt>
+      <dd><%= @user_level.user_id %></dd>
+
+      <dt>General</dt>
+      <dd><%= @user_level.general %></dd>
+
+      <dt>Eje 1 placeholder</dt>
+      <dd><%= @user_level.eje_1_placeholder %></dd>
+
+      <dt>Eje 2 placeholder</dt>
+      <dd><%= @user_level.eje_2_placeholder %></dd>
+
+      <dt>Materia</dt>
+      <dd><%= @user_level.materia_id %></dd>
+
+      <dt>Date</dt>
+      <dd><%= @user_level.date %></dd>
+
+    </dl>
+
+    <div class="btn-group btn-group-justified">
+      <a href="/user_levels" class="btn btn-primary">
+        Back
+      </a>
+      <a href="/user_levels/<%= @user_level.id %>/edit" class="btn btn-warning">
+        Edit
+      </a>
+      <a href="/delete_user_level/<%= @user_level.id %>" class="btn btn-danger" rel="nofollow">
+        Delete
+      </a>
+    </div>
+  </div>
+</div>
