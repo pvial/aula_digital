@@ -1,0 +1,71 @@
+<!-- Validation failure messages -->
+<% if @try.errors.any? %>
+  <% @try.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Edit Try #<%= @try.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/update_try/<%= @try.id %>" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for user_id -->
+      <div class="form-group">
+        <label for="user_id" class="control-label">
+          User
+        </label>
+
+        <input type="text" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= @try.user_id %>">
+      </div>
+
+      <!-- Label and input for excercise_id -->
+      <div class="form-group">
+        <label for="excercise_id" class="control-label">
+          Excercise
+        </label>
+
+        <input type="text" id="excercise_id" name="excercise_id" placeholder="Excercise" class="form-control" value="<%= @try.excercise_id %>">
+      </div>
+
+      <!-- Label and input for user_answer -->
+      <div class="form-group">
+        <label for="user_answer" class="control-label">
+          User answer
+        </label>
+
+        <input type="text" id="user_answer" name="user_answer" placeholder="User answer" class="form-control" value="<%= @try.user_answer %>">
+      </div>
+
+      <!-- Label and input for correct -->
+      <div class="checkbox">
+        <label for="correct">
+          <input type="checkbox" id="correct" name="correct" value="1" <%= "checked" if @try.correct %>>
+          Correct
+        </label>
+      </div>
+
+      <!-- Label and input for active -->
+      <div class="checkbox">
+        <label for="active">
+          <input type="checkbox" id="active" name="active" value="1" <%= "checked" if @try.active %>>
+          Active
+        </label>
+      </div>
+
+      <button class="btn btn-warning">
+        Update Try
+      </button>
+      or
+      <a href="/tries/<%= @try.id %>">Cancel</a>
+    </form>
+  </div>
+</div>

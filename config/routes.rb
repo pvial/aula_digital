@@ -1,4 +1,21 @@
 Rails.application.routes.draw do
+  # Routes for the Try resource:
+  # CREATE
+  get "/tries/new", :controller => "tries", :action => "new"
+  post "/create_try", :controller => "tries", :action => "create"
+
+  # READ
+  get "/tries", :controller => "tries", :action => "index"
+  get "/tries/:id", :controller => "tries", :action => "show"
+
+  # UPDATE
+  get "/tries/:id/edit", :controller => "tries", :action => "edit"
+  post "/update_try/:id", :controller => "tries", :action => "update"
+
+  # DELETE
+  get "/delete_try/:id", :controller => "tries", :action => "destroy"
+  #------------------------------
+
   devise_for :users
   # Routes for the User resource:
   # READ
