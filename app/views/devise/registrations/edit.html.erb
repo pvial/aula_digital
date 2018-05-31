@@ -55,6 +55,41 @@
           </div>
 
           <div class="form-group">
+            <%= f.label :first_name, class: "col-sm-2 control-label" %>
+            <div class="col-sm-10">
+              <%= f.text_field :first_name, :class => "form-control", :placeholder => "Enter first name" %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :last_name, class: "col-sm-2 control-label" %>
+            <div class="col-sm-10">
+              <%= f.text_field :last_name, :class => "form-control", :placeholder => "Enter last name" %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :level_id, class: "col-sm-2 control-label" %>
+            <div class="col-sm-10">
+              <%= f.number_field :level_id, :class => "form-control", :placeholder => "Enter level id" %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :picture, class: "col-sm-2 control-label" %>
+            <div class="col-sm-10">
+              <%= f.text_field :picture, :class => "form-control", :placeholder => "Enter picture" %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :class_id, class: "col-sm-2 control-label" %>
+            <div class="col-sm-10">
+              <%= f.select(:class_id, options_from_collection_for_select(Classroom.all, :id, :nivel_id, @user.class_id), {}, {:class => "form-control"}) %>
+            </div>
+          </div>
+
+          <div class="form-group">
             <div class="col-sm-10 col-sm-offset-2">
               <%= f.submit "Update", class: "btn btn-success btn-block" %>
             </div>
