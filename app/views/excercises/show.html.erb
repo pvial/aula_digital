@@ -130,7 +130,7 @@
       <% @excercise.users.each do |user| %>
         <li class="list-group-item">
           <a href="/users/<%= user.id %>">
-            <%= user.email %>
+            <%= user.created_at %>
           </a>
           <div class="btn-group btn-group-xs pull-right">
             <a href="/users/<%= user.id %>" class="btn btn-primary">
