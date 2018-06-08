@@ -1,7 +1,7 @@
 class IndicatorsController < ApplicationController
   def index
     @q = Indicator.ransack(params[:q])
-    @indicators = @q.result(:distinct => true).includes(:excercises, :go_to_indicator, :preceding_indicator, :coming_from_indicator, :next_indicator, :go_to_indicator, :preceding_indicator, :coming_from_indicator, :next_indicator, :go_to_indicator, :preceding_indicator, :go_to_indicator, :preceding_indicator, :coming_from_indicator, :next_indicator, :coming_from_indicator, :next_indicator, :objetivo).page(params[:page]).per(10)
+    @indicators = @q.result(:distinct => true).includes(:excercises, :go_to_indicator, :preceding_indicator, :coming_from_indicator, :next_indicator, :go_to_indicator, :preceding_indicator, :coming_from_indicator, :next_indicator, :go_to_indicator, :preceding_indicator, :go_to_indicator, :preceding_indicator, :coming_from_indicator, :next_indicator, :coming_from_indicator, :next_indicator, :go_to_indicator, :preceding_indicator, :go_to_indicator, :preceding_indicator, :go_to_indicator, :preceding_indicator, :go_to_indicator, :preceding_indicator, :coming_from_indicator, :next_indicator, :coming_from_indicator, :next_indicator, :coming_from_indicator, :next_indicator, :coming_from_indicator, :next_indicator, :objetivo).page(params[:page]).per(10)
 
     render("indicators/index.html.erb")
   end
