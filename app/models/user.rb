@@ -3,12 +3,12 @@ class User < ApplicationRecord
 
   # Direct associations
 
-  belongs_to :classroom,
-             :required => false,
-             :foreign_key => "class_id"
+  belongs_to :sala
+
+  has_many   :intento_tests
 
   has_many   :levels,
-             :class_name => "UserLevel",
+             :class_name => "Nivel",
              :dependent => :destroy
 
   has_many   :tries
@@ -18,6 +18,10 @@ class User < ApplicationRecord
   has_many   :excercises,
              :through => :tries,
              :source => :excercise
+
+  has_one    :profesor,
+             :through => :sala,
+             :source => :profesor
 
   # Validations
 

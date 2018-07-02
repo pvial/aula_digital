@@ -1,0 +1,37 @@
+<!-- Validation failure messages -->
+<% if @colegio.errors.any? %>
+  <% @colegio.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Edit Colegio #<%= @colegio.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/update_colegio/<%= @colegio.id %>" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for nombre -->
+      <div class="form-group">
+        <label for="nombre" class="control-label">
+          Nombre
+        </label>
+
+        <textarea id="nombre" name="nombre" placeholder="Nombre" class="form-control" rows="3"><%= @colegio.nombre %></textarea>
+      </div>
+
+      <button class="btn btn-warning">
+        Update Colegio
+      </button>
+      or
+      <a href="/colegios/<%= @colegio.id %>">Cancel</a>
+    </form>
+  </div>
+</div>

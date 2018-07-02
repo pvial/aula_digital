@@ -27,7 +27,7 @@
           Excercise
         </label>
 
-        <%= select_tag(:excercise_id, options_from_collection_for_select(Excercise.all, :id, :created_at, @try.excercise_id), :class => "form-control") %>
+        <%= select_tag(:excercise_id, options_from_collection_for_select(Ejercicio.all, :id, :created_at, @try.excercise_id), :class => "form-control") %>
       </div>
 
       <!-- Label and input for user_answer -->
@@ -53,6 +53,15 @@
           <input type="checkbox" id="active" name="active" value="1" <%= "checked" if @try.active %>>
           Active
         </label>
+      </div>
+
+      <!-- Label and input for intento_guia_id -->
+      <div class="form-group">
+        <label for="intento_guia_id" class="control-label">
+          Intento guia
+        </label>
+
+        <%= select_tag(:intento_guia_id, options_from_collection_for_select(IntentoTest.all, :id, :test_id, @try.intento_guia_id), :class => "form-control") %>
       </div>
 
       <button class="btn btn-warning">

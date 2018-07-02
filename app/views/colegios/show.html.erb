@@ -1,0 +1,110 @@
+<div class="page-header">
+  <h3>Colegio #<%= @colegio.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12 mb-2">
+    <dl class="dl-horizontal">
+      <dt>Nombre</dt>
+      <dd><%= @colegio.nombre %></dd>
+
+    </dl>
+
+    <div class="btn-group btn-group-justified">
+      <a href="/colegios" class="btn btn-primary">
+        Back
+      </a>
+      <a href="/colegios/<%= @colegio.id %>/edit" class="btn btn-warning">
+        Edit
+      </a>
+      <a href="/delete_colegio/<%= @colegio.id %>" class="btn btn-danger" rel="nofollow">
+        Delete
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- A Colegio has many salas -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-info">
+        Salas
+      </li>
+
+      <% @colegio.salas.each do |sala| %>
+        <li class="list-group-item">
+          <a href="/salas/<%= sala.id %>">
+            <%= sala.profesor_id %>
+          </a>
+          <div class="btn-group btn-group-xs pull-right">
+            <a href="/salas/<%= sala.id %>" class="btn btn-primary">
+              <i class="fa fa-search-plus"></i>
+            </a>
+            <a href="/salas/<%= sala.id %>/edit" class="btn btn-warning">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="/delete_sala/<%= sala.id %>" class="btn btn-danger" rel="nofollow">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </div>
+        </li>
+      <% end %>
+
+      <li class="list-group-item">
+        <form action="/create_sala" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for profesor_id -->
+      <div class="form-group">
+        <label for="profesor_id" class="control-label">
+          Profesor
+        </label>
+
+        <%= select_tag(:profesor_id, options_from_collection_for_select(Profesor.all, :id, :email), :class => "form-control") %>
+      </div>
+
+      <!-- Label and input for colegio_id -->
+      <input type="hidden" name="colegio_id" value="<%= @colegio.id %>">
+
+      <button class="btn btn-block btn-success">
+        Create Sala
+      </button>
+    </form>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!-- A Colegio has many profesors -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-info">
+        Profesors
+      </li>
+
+      <% @colegio.profesors.each do |profesor| %>
+        <li class="list-group-item">
+          <a href="/profesors/<%= profesor.id %>">
+            <%= profesor.email %>
+          </a>
+          <div class="btn-group btn-group-xs pull-right">
+            <a href="/profesors/<%= profesor.id %>" class="btn btn-primary">
+              <i class="fa fa-search-plus"></i>
+            </a>
+            <a href="/profesors/<%= profesor.id %>/edit" class="btn btn-warning">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="/delete_profesor/<%= profesor.id %>" class="btn btn-danger" rel="nofollow">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>

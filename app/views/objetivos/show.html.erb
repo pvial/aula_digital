@@ -5,12 +5,6 @@
 <div class="row">
   <div class="col-md-12 mb-2">
     <dl class="dl-horizontal">
-      <dt>Pre objetivo</dt>
-      <dd><%= @objetivo.pre_objetivo_id %></dd>
-
-      <dt>Next objetivo</dt>
-      <dd><%= @objetivo.next_objetivo_id %></dd>
-
       <dt>Eje</dt>
       <dd>
         <% if @objetivo.eje.present? %>
@@ -20,17 +14,11 @@
         <% end %>
       </dd>
 
-      <dt>Description</dt>
-      <dd><%= @objetivo.description %></dd>
+      <dt>Descripcion</dt>
+      <dd><%= @objetivo.descripcion %></dd>
 
-      <dt>Nivel</dt>
-      <dd>
-        <% if @objetivo.year.present? %>
-          <a href="/nivels/<%= @objetivo.nivel_id %>">
-            <%= @objetivo.year.intended_year %>
-          </a>
-        <% end %>
-      </dd>
+      <dt>Numeral</dt>
+      <dd><%= @objetivo.numeral %></dd>
 
     </dl>
 
@@ -60,7 +48,7 @@
       <% @objetivo.indicators.each do |indicator| %>
         <li class="list-group-item">
           <a href="/indicators/<%= indicator.id %>">
-            <%= indicator.description %>
+            <%= indicator.descripcion %>
           </a>
           <div class="btn-group btn-group-xs pull-right">
             <a href="/indicators/<%= indicator.id %>" class="btn btn-primary">
@@ -81,34 +69,25 @@
       <!-- Hidden input for authenticity token to protect from forgery -->
       <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
-      <!-- Label and input for pre_indicator_id -->
-      <div class="form-group">
-        <label for="pre_indicator_id" class="control-label">
-          Pre indicator
-        </label>
-
-        <%= select_tag(:pre_indicator_id, options_from_collection_for_select(Indicator.all, :id, :description), :class => "form-control") %>
-      </div>
-
-      <!-- Label and input for next_indicator_id -->
-      <div class="form-group">
-        <label for="next_indicator_id" class="control-label">
-          Next indicator
-        </label>
-
-        <%= select_tag(:next_indicator_id, options_from_collection_for_select(Indicator.all, :id, :description), :class => "form-control") %>
-      </div>
-
       <!-- Label and input for objetivo_id -->
       <input type="hidden" name="objetivo_id" value="<%= @objetivo.id %>">
 
-      <!-- Label and input for description -->
+      <!-- Label and input for descripcion -->
       <div class="form-group">
-        <label for="description" class="control-label">
-          Description
+        <label for="descripcion" class="control-label">
+          Descripcion
         </label>
 
-        <textarea id="description" name="description" placeholder="Description" class="form-control" rows="3"></textarea>
+        <textarea id="descripcion" name="descripcion" placeholder="Descripcion" class="form-control" rows="3"></textarea>
+      </div>
+
+      <!-- Label and input for numeral -->
+      <div class="form-group">
+        <label for="numeral" class="control-label">
+          Numeral
+        </label>
+
+        <input type="text" id="numeral" name="numeral" placeholder="Numeral" class="form-control" value="">
       </div>
 
       <button class="btn btn-block btn-success">
