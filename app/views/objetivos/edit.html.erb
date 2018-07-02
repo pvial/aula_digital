@@ -18,24 +18,6 @@
       <!-- Hidden input for authenticity token to protect from forgery -->
       <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
-      <!-- Label and input for pre_objetivo_id -->
-      <div class="form-group">
-        <label for="pre_objetivo_id" class="control-label">
-          Pre objetivo
-        </label>
-
-        <input type="text" id="pre_objetivo_id" name="pre_objetivo_id" placeholder="Pre objetivo" class="form-control" value="<%= @objetivo.pre_objetivo_id %>">
-      </div>
-
-      <!-- Label and input for next_objetivo_id -->
-      <div class="form-group">
-        <label for="next_objetivo_id" class="control-label">
-          Next objetivo
-        </label>
-
-        <input type="text" id="next_objetivo_id" name="next_objetivo_id" placeholder="Next objetivo" class="form-control" value="<%= @objetivo.next_objetivo_id %>">
-      </div>
-
       <!-- Label and input for eje_id -->
       <div class="form-group">
         <label for="eje_id" class="control-label">
@@ -45,22 +27,22 @@
         <%= select_tag(:eje_id, options_from_collection_for_select(Eje.all, :id, :description, @objetivo.eje_id), :class => "form-control") %>
       </div>
 
-      <!-- Label and input for description -->
+      <!-- Label and input for descripcion -->
       <div class="form-group">
-        <label for="description" class="control-label">
-          Description
+        <label for="descripcion" class="control-label">
+          Descripcion
         </label>
 
-        <textarea id="description" name="description" placeholder="Description" class="form-control" rows="3"><%= @objetivo.description %></textarea>
+        <textarea id="descripcion" name="descripcion" placeholder="Descripcion" class="form-control" rows="3"><%= @objetivo.descripcion %></textarea>
       </div>
 
-      <!-- Label and input for nivel_id -->
+      <!-- Label and input for numeral -->
       <div class="form-group">
-        <label for="nivel_id" class="control-label">
-          Nivel
+        <label for="numeral" class="control-label">
+          Numeral
         </label>
 
-        <%= select_tag(:nivel_id, options_from_collection_for_select(Nivel.all, :id, :intended_year, @objetivo.nivel_id), :class => "form-control") %>
+        <input type="text" id="numeral" name="numeral" placeholder="Numeral" class="form-control" value="<%= @objetivo.numeral %>">
       </div>
 
       <button class="btn btn-warning">

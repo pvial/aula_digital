@@ -1,0 +1,181 @@
+<div class="page-header">
+  <h3>Categorium #<%= @categorium.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12 mb-2">
+    <dl class="dl-horizontal">
+      <dt>Descripcion</dt>
+      <dd><%= @categorium.descripcion %></dd>
+
+      <dt>Eje</dt>
+      <dd>
+        <% if @categorium.eje.present? %>
+          <a href="/ejes/<%= @categorium.eje_id %>">
+            <%= @categorium.eje.description %>
+          </a>
+        <% end %>
+      </dd>
+
+    </dl>
+
+    <div class="btn-group btn-group-justified">
+      <a href="/categoria" class="btn btn-primary">
+        Back
+      </a>
+      <a href="/categoria/<%= @categorium.id %>/edit" class="btn btn-warning">
+        Edit
+      </a>
+      <a href="/delete_categorium/<%= @categorium.id %>" class="btn btn-danger" rel="nofollow">
+        Delete
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- A Categorium has many contenidos -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-info">
+        Contenidos
+      </li>
+
+      <% @categorium.contenidos.each do |contenido| %>
+        <li class="list-group-item">
+          <a href="/contenidos/<%= contenido.id %>">
+            <%= contenido.nombre %>
+          </a>
+          <div class="btn-group btn-group-xs pull-right">
+            <a href="/contenidos/<%= contenido.id %>" class="btn btn-primary">
+              <i class="fa fa-search-plus"></i>
+            </a>
+            <a href="/contenidos/<%= contenido.id %>/edit" class="btn btn-warning">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="/delete_contenido/<%= contenido.id %>" class="btn btn-danger" rel="nofollow">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </div>
+        </li>
+      <% end %>
+
+      <li class="list-group-item">
+        <form action="/create_contenido" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for nombre -->
+      <div class="form-group">
+        <label for="nombre" class="control-label">
+          Nombre
+        </label>
+
+        <textarea id="nombre" name="nombre" placeholder="Nombre" class="form-control" rows="3"></textarea>
+      </div>
+
+      <!-- Label and input for anterior -->
+      <div class="form-group">
+        <label for="anterior" class="control-label">
+          Anterior
+        </label>
+
+        <input type="text" id="anterior" name="anterior" placeholder="Anterior" class="form-control" value="">
+      </div>
+
+      <!-- Label and input for siguiente -->
+      <div class="form-group">
+        <label for="siguiente" class="control-label">
+          Siguiente
+        </label>
+
+        <input type="text" id="siguiente" name="siguiente" placeholder="Siguiente" class="form-control" value="">
+      </div>
+
+      <!-- Label and input for categoria_id -->
+      <div class="form-group">
+        <label for="categoria_id" class="control-label">
+          Categoria
+        </label>
+
+        <%= select_tag(:categoria_id, options_from_collection_for_select(Categorium.all, :id, :descripcion), :class => "form-control") %>
+      </div>
+
+      <button class="btn btn-block btn-success">
+        Create Contenido
+      </button>
+    </form>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!-- A Categorium has many puntajes -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-info">
+        Puntajes
+      </li>
+
+      <% @categorium.puntajes.each do |puntaje| %>
+        <li class="list-group-item">
+          <a href="/puntajes/<%= puntaje.id %>">
+            <%= puntaje.nivel_id %>
+          </a>
+          <div class="btn-group btn-group-xs pull-right">
+            <a href="/puntajes/<%= puntaje.id %>" class="btn btn-primary">
+              <i class="fa fa-search-plus"></i>
+            </a>
+            <a href="/puntajes/<%= puntaje.id %>/edit" class="btn btn-warning">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="/delete_puntaje/<%= puntaje.id %>" class="btn btn-danger" rel="nofollow">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </div>
+        </li>
+      <% end %>
+
+      <li class="list-group-item">
+        <form action="/create_puntaje" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for nivel_id -->
+      <div class="form-group">
+        <label for="nivel_id" class="control-label">
+          Nivel
+        </label>
+
+        <%= select_tag(:nivel_id, options_from_collection_for_select(Nivel.all, :id, :user_id), :class => "form-control") %>
+      </div>
+
+      <!-- Label and input for categoria_id -->
+      <div class="form-group">
+        <label for="categoria_id" class="control-label">
+          Categoria
+        </label>
+
+        <%= select_tag(:categoria_id, options_from_collection_for_select(Categorium.all, :id, :descripcion), :class => "form-control") %>
+      </div>
+
+      <!-- Label and input for score -->
+      <div class="form-group">
+        <label for="score" class="control-label">
+          Score
+        </label>
+
+        <input type="text" id="score" name="score" placeholder="Score" class="form-control" value="">
+      </div>
+
+      <button class="btn btn-block btn-success">
+        Create Puntaje
+      </button>
+    </form>
+      </li>
+    </ul>
+  </div>
+</div>

@@ -1,7 +1,7 @@
 class TriesController < ApplicationController
   def index
     @q = current_user.tries.ransack(params[:q])
-    @tries = @q.result(:distinct => true).includes(:excercise, :user).page(params[:page]).per(10)
+    @tries = @q.result(:distinct => true).includes(:excercise, :user, :intento_guia).page(params[:page]).per(10)
 
     render("tries/index.html.erb")
   end
@@ -26,6 +26,7 @@ class TriesController < ApplicationController
     @try.user_answer = params[:user_answer]
     @try.correct = params[:correct]
     @try.active = params[:active]
+    @try.intento_guia_id = params[:intento_guia_id]
 
     save_status = @try.save
 
@@ -55,6 +56,7 @@ class TriesController < ApplicationController
     @try.user_answer = params[:user_answer]
     @try.correct = params[:correct]
     @try.active = params[:active]
+    @try.intento_guia_id = params[:intento_guia_id]
 
     save_status = @try.save
 

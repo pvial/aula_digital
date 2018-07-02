@@ -1,0 +1,46 @@
+<!-- Validation failure messages -->
+<% if @categorium.errors.any? %>
+  <% @categorium.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Add Categorium</h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/create_categorium" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for descripcion -->
+      <div class="form-group">
+        <label for="descripcion" class="control-label">
+          Descripcion
+        </label>
+
+        <textarea id="descripcion" name="descripcion" placeholder="Descripcion" class="form-control" rows="3"><%= @categorium.descripcion %></textarea>
+      </div>
+
+      <!-- Label and input for eje_id -->
+      <div class="form-group">
+        <label for="eje_id" class="control-label">
+          Eje
+        </label>
+
+        <%= select_tag(:eje_id, options_from_collection_for_select(Eje.all, :id, :description, @categorium.eje_id), :class => "form-control") %>
+      </div>
+
+      <button class="btn btn-success">
+        Create Categorium
+      </button>
+      or
+      <a href="/categoria">Cancel</a>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,46 @@
+<div class="page-header">
+  <h3>Tributo #<%= @tributo.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12 mb-2">
+    <dl class="dl-horizontal">
+      <dt>Contenido name</dt>
+      <dd><%= @tributo.contenido_name %></dd>
+
+      <dt>Contenido</dt>
+      <dd>
+        <% if @tributo.contenido.present? %>
+          <a href="/contenidos/<%= @tributo.contenido_id %>">
+            <%= @tributo.contenido.nombre %>
+          </a>
+        <% end %>
+      </dd>
+
+      <dt>Indicador name</dt>
+      <dd><%= @tributo.indicador_name %></dd>
+
+      <dt>Indicador</dt>
+      <dd>
+        <% if @tributo.indicador.present? %>
+          <a href="/indicators/<%= @tributo.indicador_id %>">
+            <%= @tributo.indicador.descripcion %>
+          </a>
+        <% end %>
+      </dd>
+
+    </dl>
+
+    <div class="btn-group btn-group-justified">
+      <a href="/tributos" class="btn btn-primary">
+        Back
+      </a>
+      <a href="/tributos/<%= @tributo.id %>/edit" class="btn btn-warning">
+        Edit
+      </a>
+      <a href="/delete_tributo/<%= @tributo.id %>" class="btn btn-danger" rel="nofollow">
+        Delete
+      </a>
+    </div>
+  </div>
+</div>

@@ -41,17 +41,25 @@
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
-          <li><a href="/classrooms">Classrooms</a></li>
+          <li><a href="/colegios">Colegios</a></li>
+          <li><a href="/intento_tests">Intento Tests</a></li>
+          <li><a href="/asignacions">Asignacions</a></li>
+          <li><a href="/seccions">Seccions</a></li>
+          <li><a href="/tests">Tests</a></li>
+          <li><a href="/salas">Salas</a></li>
+          <li><a href="/profesors">Profesors</a></li>
+          <li><a href="/puntajes">Puntajes</a></li>
+          <li><a href="/tributos">Tributos</a></li>
+          <li><a href="/contenidos">Contenidos</a></li>
           <li><a href="/nivels">Nivels</a></li>
-          <li><a href="/user_levels">User Levels</a></li>
-          <li><a href="/materia">Materia</a></li>
+          <li><a href="/categoria">Categoria</a></li>
           <li><a href="/ejes">Ejes</a></li>
           <li><a href="/objetivos">Objetivos</a></li>
           <li><a href="/indicators">Indicators</a></li>
           <li><a href="/tries">Tries</a></li>
           <li><a href="/users">Users</a></li>
           <li><a href="/answers">Answers</a></li>
-          <li><a href="/excercises">Excercises</a></li>
+          <li><a href="/ejercicios">Ejercicios</a></li>
           <li><a href="/rails/info">Sitemap</a></li>
         </ul>
 
@@ -59,7 +67,7 @@
           <% if current_user.present? %>
             <li>
               <a href="/users/edit">
-                <%= current_user.email %>
+                <%= current_user.created_at %>
               </a>
             </li>
 

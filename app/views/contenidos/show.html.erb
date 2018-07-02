@@ -1,0 +1,296 @@
+<div class="page-header">
+  <h3>Contenido #<%= @contenido.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12 mb-2">
+    <dl class="dl-horizontal">
+      <dt>Nombre</dt>
+      <dd><%= @contenido.nombre %></dd>
+
+      <dt>Anterior</dt>
+      <dd><%= @contenido.anterior %></dd>
+
+      <dt>Siguiente</dt>
+      <dd><%= @contenido.siguiente %></dd>
+
+      <dt>Categoria</dt>
+      <dd>
+        <% if @contenido.materia.present? %>
+          <a href="/categoria/<%= @contenido.categoria_id %>">
+            <%= @contenido.materia.descripcion %>
+          </a>
+        <% end %>
+      </dd>
+
+    </dl>
+
+    <div class="btn-group btn-group-justified">
+      <a href="/contenidos" class="btn btn-primary">
+        Back
+      </a>
+      <a href="/contenidos/<%= @contenido.id %>/edit" class="btn btn-warning">
+        Edit
+      </a>
+      <a href="/delete_contenido/<%= @contenido.id %>" class="btn btn-danger" rel="nofollow">
+        Delete
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- A Contenido has many tributos -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-info">
+        Tributos
+      </li>
+
+      <% @contenido.tributos.each do |tributo| %>
+        <li class="list-group-item">
+          <a href="/tributos/<%= tributo.id %>">
+            <%= tributo.contenido_name %>
+          </a>
+          <div class="btn-group btn-group-xs pull-right">
+            <a href="/tributos/<%= tributo.id %>" class="btn btn-primary">
+              <i class="fa fa-search-plus"></i>
+            </a>
+            <a href="/tributos/<%= tributo.id %>/edit" class="btn btn-warning">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="/delete_tributo/<%= tributo.id %>" class="btn btn-danger" rel="nofollow">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </div>
+        </li>
+      <% end %>
+
+      <li class="list-group-item">
+        <form action="/create_tributo" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for contenido_name -->
+      <div class="form-group">
+        <label for="contenido_name" class="control-label">
+          Contenido name
+        </label>
+
+        <textarea id="contenido_name" name="contenido_name" placeholder="Contenido name" class="form-control" rows="3"></textarea>
+      </div>
+
+      <!-- Label and input for contenido_id -->
+      <input type="hidden" name="contenido_id" value="<%= @contenido.id %>">
+
+      <!-- Label and input for indicador_name -->
+      <div class="form-group">
+        <label for="indicador_name" class="control-label">
+          Indicador name
+        </label>
+
+        <textarea id="indicador_name" name="indicador_name" placeholder="Indicador name" class="form-control" rows="3"></textarea>
+      </div>
+
+      <!-- Label and input for indicador_id -->
+      <div class="form-group">
+        <label for="indicador_id" class="control-label">
+          Indicador
+        </label>
+
+        <%= select_tag(:indicador_id, options_from_collection_for_select(Indicator.all, :id, :descripcion), :class => "form-control") %>
+      </div>
+
+      <button class="btn btn-block btn-success">
+        Create Tributo
+      </button>
+    </form>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!-- A Contenido has many ejercicios -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-info">
+        Ejercicios
+      </li>
+
+      <% @contenido.ejercicios.each do |ejercicio| %>
+        <li class="list-group-item">
+          <a href="/ejercicios/<%= ejercicio.id %>">
+            <%= ejercicio.created_at %>
+          </a>
+          <div class="btn-group btn-group-xs pull-right">
+            <a href="/ejercicios/<%= ejercicio.id %>" class="btn btn-primary">
+              <i class="fa fa-search-plus"></i>
+            </a>
+            <a href="/ejercicios/<%= ejercicio.id %>/edit" class="btn btn-warning">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="/delete_ejercicio/<%= ejercicio.id %>" class="btn btn-danger" rel="nofollow">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </div>
+        </li>
+      <% end %>
+
+      <li class="list-group-item">
+        <form action="/create_ejercicio" method="post" enctype="multipart/form-data">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for contenido_id -->
+      <input type="hidden" name="contenido_id" value="<%= @contenido.id %>">
+
+      <!-- Label and input for dificultad -->
+      <div class="form-group">
+        <label for="dificultad" class="control-label">
+          Dificultad
+        </label>
+
+        <input type="text" id="dificultad" name="dificultad" placeholder="Dificultad" class="form-control" value="">
+      </div>
+
+      <!-- Label and input for imagen -->
+      <div class="form-group">
+        <label for="imagen" class="control-label">
+          Imagen
+        </label>
+
+        <input type="file" id="imagen" name="imagen" class="form-control">
+      </div>
+
+      <!-- Label and input for pregunta -->
+      <div class="form-group">
+        <label for="pregunta" class="control-label">
+          Pregunta
+        </label>
+
+        <textarea id="pregunta" name="pregunta" placeholder="Pregunta" class="form-control" rows="3"></textarea>
+      </div>
+
+      <!-- Label and input for indicador_id -->
+      <div class="form-group">
+        <label for="indicador_id" class="control-label">
+          Indicador
+        </label>
+
+        <%= select_tag(:indicador_id, options_from_collection_for_select(Indicator.all, :id, :descripcion), :class => "form-control") %>
+      </div>
+
+      <!-- Label and input for habilidad -->
+      <div class="form-group">
+        <label for="habilidad" class="control-label">
+          Habilidad
+        </label>
+
+        <input type="text" id="habilidad" name="habilidad" placeholder="Habilidad" class="form-control" value="">
+      </div>
+
+      <button class="btn btn-block btn-success">
+        Create Ejercicio
+      </button>
+    </form>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!-- A Contenido has many seccions -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-info">
+        Seccions
+      </li>
+
+      <% @contenido.seccions.each do |seccion| %>
+        <li class="list-group-item">
+          <a href="/seccions/<%= seccion.id %>">
+            <%= seccion.created_at %>
+          </a>
+          <div class="btn-group btn-group-xs pull-right">
+            <a href="/seccions/<%= seccion.id %>" class="btn btn-primary">
+              <i class="fa fa-search-plus"></i>
+            </a>
+            <a href="/seccions/<%= seccion.id %>/edit" class="btn btn-warning">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="/delete_seccion/<%= seccion.id %>" class="btn btn-danger" rel="nofollow">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </div>
+        </li>
+      <% end %>
+
+      <li class="list-group-item">
+        <form action="/create_seccion" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for contenido_id -->
+      <input type="hidden" name="contenido_id" value="<%= @contenido.id %>">
+
+      <!-- Label and input for test_id -->
+      <div class="form-group">
+        <label for="test_id" class="control-label">
+          Test
+        </label>
+
+        <%= select_tag(:test_id, options_from_collection_for_select(Test.all, :id, :profesor_id), :class => "form-control") %>
+      </div>
+
+      <!-- Label and input for numero_ejercicios -->
+      <div class="form-group">
+        <label for="numero_ejercicios" class="control-label">
+          Numero ejercicios
+        </label>
+
+        <input type="text" id="numero_ejercicios" name="numero_ejercicios" placeholder="Numero ejercicios" class="form-control" value="">
+      </div>
+
+      <button class="btn btn-block btn-success">
+        Create Seccion
+      </button>
+    </form>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!-- A Contenido has many indicadors -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-info">
+        Indicadors
+      </li>
+
+      <% @contenido.indicadors.each do |indicator| %>
+        <li class="list-group-item">
+          <a href="/indicators/<%= indicator.id %>">
+            <%= indicator.descripcion %>
+          </a>
+          <div class="btn-group btn-group-xs pull-right">
+            <a href="/indicators/<%= indicator.id %>" class="btn btn-primary">
+              <i class="fa fa-search-plus"></i>
+            </a>
+            <a href="/indicators/<%= indicator.id %>/edit" class="btn btn-warning">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="/delete_indicator/<%= indicator.id %>" class="btn btn-danger" rel="nofollow">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>

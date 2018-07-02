@@ -1,0 +1,64 @@
+<!-- Validation failure messages -->
+<% if @contenido.errors.any? %>
+  <% @contenido.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Edit Contenido #<%= @contenido.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/update_contenido/<%= @contenido.id %>" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for nombre -->
+      <div class="form-group">
+        <label for="nombre" class="control-label">
+          Nombre
+        </label>
+
+        <textarea id="nombre" name="nombre" placeholder="Nombre" class="form-control" rows="3"><%= @contenido.nombre %></textarea>
+      </div>
+
+      <!-- Label and input for anterior -->
+      <div class="form-group">
+        <label for="anterior" class="control-label">
+          Anterior
+        </label>
+
+        <input type="text" id="anterior" name="anterior" placeholder="Anterior" class="form-control" value="<%= @contenido.anterior %>">
+      </div>
+
+      <!-- Label and input for siguiente -->
+      <div class="form-group">
+        <label for="siguiente" class="control-label">
+          Siguiente
+        </label>
+
+        <input type="text" id="siguiente" name="siguiente" placeholder="Siguiente" class="form-control" value="<%= @contenido.siguiente %>">
+      </div>
+
+      <!-- Label and input for categoria_id -->
+      <div class="form-group">
+        <label for="categoria_id" class="control-label">
+          Categoria
+        </label>
+
+        <%= select_tag(:categoria_id, options_from_collection_for_select(Categorium.all, :id, :descripcion, @contenido.categoria_id), :class => "form-control") %>
+      </div>
+
+      <button class="btn btn-warning">
+        Update Contenido
+      </button>
+      or
+      <a href="/contenidos/<%= @contenido.id %>">Cancel</a>
+    </form>
+  </div>
+</div>

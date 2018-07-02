@@ -74,11 +74,11 @@
       </script>
 
         <div class="form-group">
-          <%= f.label :created_at, "Excercise Created at" %>
+          <%= f.label :created_at, "Ejercicio Created at" %>
           <div class="row">
             <div class='col-md-6 mb-1'>
               <div class='input-group date' id='excercisegteqcreated_atPicker'>
-                  <%= f.text_field :excercise_created_at_gteq, :class => "form-control", :placeholder => "Excercise Created at greater than or equal to" %>
+                  <%= f.text_field :excercise_created_at_gteq, :class => "form-control", :placeholder => "Ejercicio Created at greater than or equal to" %>
                   <span class="input-group-addon">
                       <span class="glyphicon glyphicon-calendar"></span>
                   </span>
@@ -87,7 +87,7 @@
 
             <div class='col-md-6'>
               <div class='input-group date' id='excerciselteqcreated_atPicker'>
-                  <%= f.text_field :excercise_created_at_lteq, :class => "form-control", :placeholder => "Excercise Created at less than or equal to" %>
+                  <%= f.text_field :excercise_created_at_lteq, :class => "form-control", :placeholder => "Ejercicio Created at less than or equal to" %>
                   <span class="input-group-addon">
                       <span class="glyphicon glyphicon-calendar"></span>
                   </span>
@@ -145,7 +145,7 @@
         <td><%= answer.wrong_4 %></td>
         <td>
           <% if answer.excercise.present? %>
-            <a href="/excercises/<%= answer.excercise.id %>">
+            <a href="/ejercicios/<%= answer.excercise.id %>">
               <%= answer.excercise.created_at %>
             </a>
           <% end %>

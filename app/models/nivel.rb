@@ -1,9 +1,10 @@
 class Nivel < ApplicationRecord
   # Direct associations
 
-  has_many   :classrooms
+  has_many   :puntajes,
+             :dependent => :destroy
 
-  has_many   :objetivos
+  belongs_to :user
 
   # Indirect associations
 

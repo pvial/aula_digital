@@ -1,14 +1,13 @@
 class NivelsController < ApplicationController
   def index
     @q = Nivel.ransack(params[:q])
-    @nivels = @q.result(:distinct => true).includes(:objetivos, :classrooms).page(params[:page]).per(10)
+    @nivels = @q.result(:distinct => true).includes(:user, :puntajes).page(params[:page]).per(10)
 
     render("nivels/index.html.erb")
   end
 
   def show
-    @classroom = Classroom.new
-    @objetivo = Objetivo.new
+    @puntaje = Puntaje.new
     @nivel = Nivel.find(params[:id])
 
     render("nivels/show.html.erb")
@@ -23,7 +22,7 @@ class NivelsController < ApplicationController
   def create
     @nivel = Nivel.new
 
-    @nivel.intended_year = params[:intended_year]
+    @nivel.user_id = params[:user_id]
 
     save_status = @nivel.save
 
@@ -50,7 +49,7 @@ class NivelsController < ApplicationController
   def update
     @nivel = Nivel.find(params[:id])
 
-    @nivel.intended_year = params[:intended_year]
+    @nivel.user_id = params[:user_id]
 
     save_status = @nivel.save
 

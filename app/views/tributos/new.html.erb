@@ -1,0 +1,64 @@
+<!-- Validation failure messages -->
+<% if @tributo.errors.any? %>
+  <% @tributo.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Add Tributo</h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/create_tributo" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for contenido_name -->
+      <div class="form-group">
+        <label for="contenido_name" class="control-label">
+          Contenido name
+        </label>
+
+        <textarea id="contenido_name" name="contenido_name" placeholder="Contenido name" class="form-control" rows="3"><%= @tributo.contenido_name %></textarea>
+      </div>
+
+      <!-- Label and input for contenido_id -->
+      <div class="form-group">
+        <label for="contenido_id" class="control-label">
+          Contenido
+        </label>
+
+        <%= select_tag(:contenido_id, options_from_collection_for_select(Contenido.all, :id, :nombre, @tributo.contenido_id), :class => "form-control") %>
+      </div>
+
+      <!-- Label and input for indicador_name -->
+      <div class="form-group">
+        <label for="indicador_name" class="control-label">
+          Indicador name
+        </label>
+
+        <textarea id="indicador_name" name="indicador_name" placeholder="Indicador name" class="form-control" rows="3"><%= @tributo.indicador_name %></textarea>
+      </div>
+
+      <!-- Label and input for indicador_id -->
+      <div class="form-group">
+        <label for="indicador_id" class="control-label">
+          Indicador
+        </label>
+
+        <%= select_tag(:indicador_id, options_from_collection_for_select(Indicator.all, :id, :descripcion, @tributo.indicador_id), :class => "form-control") %>
+      </div>
+
+      <button class="btn btn-success">
+        Create Tributo
+      </button>
+      or
+      <a href="/tributos">Cancel</a>
+    </form>
+  </div>
+</div>

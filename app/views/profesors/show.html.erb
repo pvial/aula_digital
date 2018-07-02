@@ -1,0 +1,115 @@
+<div class="page-header">
+  <h3>Profesor #<%= @profesor.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12 mb-2">
+    <dl class="dl-horizontal">
+      <dt>Email</dt>
+      <dd><%= @profesor.email %></dd>
+
+      <dt>Password</dt>
+      <dd><%= @profesor.password %></dd>
+
+    </dl>
+
+    <div class="btn-group btn-group-justified">
+      <a href="/profesors" class="btn btn-primary">
+        Back
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- A Profesor has many tests -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-info">
+        Tests
+      </li>
+
+      <% @profesor.tests.each do |test| %>
+        <li class="list-group-item">
+          <a href="/tests/<%= test.id %>">
+            <%= test.profesor_id %>
+          </a>
+          <div class="btn-group btn-group-xs pull-right">
+            <a href="/tests/<%= test.id %>" class="btn btn-primary">
+              <i class="fa fa-search-plus"></i>
+            </a>
+            <a href="/tests/<%= test.id %>/edit" class="btn btn-warning">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="/delete_test/<%= test.id %>" class="btn btn-danger" rel="nofollow">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
+<!-- A Profesor has many salas -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-info">
+        Salas
+      </li>
+
+      <% @profesor.salas.each do |sala| %>
+        <li class="list-group-item">
+          <a href="/salas/<%= sala.id %>">
+            <%= sala.profesor_id %>
+          </a>
+          <div class="btn-group btn-group-xs pull-right">
+            <a href="/salas/<%= sala.id %>" class="btn btn-primary">
+              <i class="fa fa-search-plus"></i>
+            </a>
+            <a href="/salas/<%= sala.id %>/edit" class="btn btn-warning">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="/delete_sala/<%= sala.id %>" class="btn btn-danger" rel="nofollow">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
+<!-- A Profesor has many colegios -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-info">
+        Colegios
+      </li>
+
+      <% @profesor.colegios.each do |colegio| %>
+        <li class="list-group-item">
+          <a href="/colegios/<%= colegio.id %>">
+            <%= colegio.nombre %>
+          </a>
+          <div class="btn-group btn-group-xs pull-right">
+            <a href="/colegios/<%= colegio.id %>" class="btn btn-primary">
+              <i class="fa fa-search-plus"></i>
+            </a>
+            <a href="/colegios/<%= colegio.id %>/edit" class="btn btn-warning">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="/delete_colegio/<%= colegio.id %>" class="btn btn-danger" rel="nofollow">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
