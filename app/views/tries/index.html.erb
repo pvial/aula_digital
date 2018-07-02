@@ -84,11 +84,11 @@
       </script>
 
         <div class="form-group">
-          <%= f.label :created_at, "Excercise Created at" %>
+          <%= f.label :created_at, "Ejercicio Created at" %>
           <div class="row">
             <div class='col-md-6 mb-1'>
               <div class='input-group date' id='excercisegteqcreated_atPicker'>
-                  <%= f.text_field :excercise_created_at_gteq, :class => "form-control", :placeholder => "Excercise Created at greater than or equal to" %>
+                  <%= f.text_field :excercise_created_at_gteq, :class => "form-control", :placeholder => "Ejercicio Created at greater than or equal to" %>
                   <span class="input-group-addon">
                       <span class="glyphicon glyphicon-calendar"></span>
                   </span>
@@ -97,7 +97,7 @@
 
             <div class='col-md-6'>
               <div class='input-group date' id='excerciselteqcreated_atPicker'>
-                  <%= f.text_field :excercise_created_at_lteq, :class => "form-control", :placeholder => "Excercise Created at less than or equal to" %>
+                  <%= f.text_field :excercise_created_at_lteq, :class => "form-control", :placeholder => "Ejercicio Created at less than or equal to" %>
                   <span class="input-group-addon">
                       <span class="glyphicon glyphicon-calendar"></span>
                   </span>
@@ -124,9 +124,44 @@
       </script>
 
 <div class="form-group">
-      <%= f.label :user_email_cont, "User email contains" %>
-      <%= f.text_field :user_email_cont, :class => "form-control", :placeholder => "User email contains" %>
-    </div>
+          <%= f.label :created_at, "User Created at" %>
+          <div class="row">
+            <div class='col-md-6 mb-1'>
+              <div class='input-group date' id='usergteqcreated_atPicker'>
+                  <%= f.text_field :user_created_at_gteq, :class => "form-control", :placeholder => "User Created at greater than or equal to" %>
+                  <span class="input-group-addon">
+                      <span class="glyphicon glyphicon-calendar"></span>
+                  </span>
+              </div>
+            </div>
+
+            <div class='col-md-6'>
+              <div class='input-group date' id='userlteqcreated_atPicker'>
+                  <%= f.text_field :user_created_at_lteq, :class => "form-control", :placeholder => "User Created at less than or equal to" %>
+                  <span class="input-group-addon">
+                      <span class="glyphicon glyphicon-calendar"></span>
+                  </span>
+              </div>
+            </div>
+          </div>
+      </div>
+      <script type="text/javascript">
+          $(function () {
+              $('#usergteqcreated_atPicker').datetimepicker({
+                  format: 'YYYY-MM-DD hh:mm:SS'
+              });
+              $('#userlteqcreated_atPicker').datetimepicker({
+                  useCurrent: false,
+                  format: 'YYYY-MM-DD hh:mm:SS'
+              });
+              $('#usergteqcreated_atPicker').on("dp.change", function (e) {
+                  $('#userlteqcreated_atPicker').data("DateTimePicker").minDate(e.date);
+              });
+              $('#userlteqcreated_atPicker').on("dp.change", function (e) {
+                  $('#usergteqcreated_atPicker').data("DateTimePicker").maxDate(e.date);
+              });
+          });
+      </script>
 
       <%= f.submit :class => "btn btn-primary btn-block mb-1" %>
 
@@ -147,6 +182,7 @@
         <th>User answer</th>
         <th>Correct</th>
         <th>Active</th>
+        <th>Intento guia</th>
         <th>Actions</th>
       </tr>
 
@@ -155,13 +191,13 @@
         <td>
           <% if try.user.present? %>
             <a href="/users/<%= try.user.id %>">
-              <%= try.user.email %>
+              <%= try.user.created_at %>
             </a>
           <% end %>
         </td>
         <td>
           <% if try.excercise.present? %>
-            <a href="/excercises/<%= try.excercise.id %>">
+            <a href="/ejercicios/<%= try.excercise.id %>">
               <%= try.excercise.created_at %>
             </a>
           <% end %>
@@ -169,6 +205,13 @@
         <td><%= try.user_answer %></td>
         <td><%= try.correct %></td>
         <td><%= try.active %></td>
+        <td>
+          <% if try.intento_guia.present? %>
+            <a href="/intento_tests/<%= try.intento_guia.id %>">
+              <%= try.intento_guia.test_id %>
+            </a>
+          <% end %>
+        </td>
         <td>
           <a href="/tries/<%= try.id %>" class="btn btn-primary">Show</a>
           <a href="/tries/<%= try.id %>/edit" class="btn btn-warning">Edit</a>

@@ -1,8 +1,9 @@
 class Eje < ApplicationRecord
   # Direct associations
 
-  belongs_to :materia,
-             :class_name => "Materium"
+  has_many   :materias,
+             :class_name => "Categorium",
+             :dependent => :destroy
 
   has_many   :objetivos
 

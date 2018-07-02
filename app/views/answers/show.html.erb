@@ -23,7 +23,7 @@
       <dt>Excercise</dt>
       <dd>
         <% if @answer.excercise.present? %>
-          <a href="/excercises/<%= @answer.excercise_id %>">
+          <a href="/ejercicios/<%= @answer.excercise_id %>">
             <%= @answer.excercise.created_at %>
           </a>
         <% end %>

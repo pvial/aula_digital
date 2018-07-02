@@ -5,29 +5,20 @@
 <div class="row">
   <div class="col-md-12 mb-2">
     <dl class="dl-horizontal">
-      <dt>Email</dt>
-      <dd><%= @user.email %></dd>
-
-      <dt>Password</dt>
-      <dd><%= @user.password %></dd>
-
       <dt>First name</dt>
       <dd><%= @user.first_name %></dd>
 
       <dt>Last name</dt>
       <dd><%= @user.last_name %></dd>
 
-      <dt>Level</dt>
-      <dd><%= @user.level_id %></dd>
-
       <dt>Picture</dt>
       <dd><img src="<%= @user.picture %>" class="img-responsive"></dd>
 
-      <dt>Class</dt>
+      <dt>Sala</dt>
       <dd>
-        <% if @user.classroom.present? %>
-          <a href="/classrooms/<%= @user.class_id %>">
-            <%= @user.classroom.nivel_id %>
+        <% if @user.sala.present? %>
+          <a href="/salas/<%= @user.sala_id %>">
+            <%= @user.sala.profesor_id %>
           </a>
         <% end %>
       </dd>
@@ -60,12 +51,14 @@
             <a href="/tries/<%= try.id %>" class="btn btn-primary">
               <i class="fa fa-search-plus"></i>
             </a>
-            <a href="/tries/<%= try.id %>/edit" class="btn btn-warning">
-              <i class="fa fa-edit"></i>
-            </a>
-            <a href="/delete_try/<%= try.id %>" class="btn btn-danger" rel="nofollow">
-              <i class="fa fa-trash-o"></i>
-            </a>
+            <%if current_user == try.user %>
+              <a href="/tries/<%= try.id %>/edit" class="btn btn-warning">
+                <i class="fa fa-edit"></i>
+              </a>
+              <a href="/delete_try/<%= try.id %>" class="btn btn-danger" rel="nofollow">
+                <i class="fa fa-trash-o"></i>
+              </a>
+            <% end %>
           </div>
         </li>
       <% end %>
@@ -82,21 +75,56 @@
         Levels
       </li>
 
-      <% @user.levels.each do |user_level| %>
+      <% @user.levels.each do |nivel| %>
         <li class="list-group-item">
-          <a href="/user_levels/<%= user_level.id %>">
-            <%= user_level.user_id %>
+          <a href="/nivels/<%= nivel.id %>">
+            <%= nivel.user_id %>
           </a>
           <div class="btn-group btn-group-xs pull-right">
-            <a href="/user_levels/<%= user_level.id %>" class="btn btn-primary">
+            <a href="/nivels/<%= nivel.id %>" class="btn btn-primary">
               <i class="fa fa-search-plus"></i>
             </a>
-            <a href="/user_levels/<%= user_level.id %>/edit" class="btn btn-warning">
-              <i class="fa fa-edit"></i>
+            <%if current_user == nivel.user %>
+              <a href="/nivels/<%= nivel.id %>/edit" class="btn btn-warning">
+                <i class="fa fa-edit"></i>
+              </a>
+              <a href="/delete_nivel/<%= nivel.id %>" class="btn btn-danger" rel="nofollow">
+                <i class="fa fa-trash-o"></i>
+              </a>
+            <% end %>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
+<!-- A User has many intento_tests -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-info">
+        Intento Tests
+      </li>
+
+      <% @user.intento_tests.each do |intento_test| %>
+        <li class="list-group-item">
+          <a href="/intento_tests/<%= intento_test.id %>">
+            <%= intento_test.test_id %>
+          </a>
+          <div class="btn-group btn-group-xs pull-right">
+            <a href="/intento_tests/<%= intento_test.id %>" class="btn btn-primary">
+              <i class="fa fa-search-plus"></i>
             </a>
-            <a href="/delete_user_level/<%= user_level.id %>" class="btn btn-danger" rel="nofollow">
-              <i class="fa fa-trash-o"></i>
-            </a>
+            <%if current_user == intento_test.user %>
+              <a href="/intento_tests/<%= intento_test.id %>/edit" class="btn btn-warning">
+                <i class="fa fa-edit"></i>
+              </a>
+              <a href="/delete_intento_test/<%= intento_test.id %>" class="btn btn-danger" rel="nofollow">
+                <i class="fa fa-trash-o"></i>
+              </a>
+            <% end %>
           </div>
         </li>
       <% end %>
@@ -113,19 +141,19 @@
         Excercises
       </li>
 
-      <% @user.excercises.each do |excercise| %>
+      <% @user.excercises.each do |ejercicio| %>
         <li class="list-group-item">
-          <a href="/excercises/<%= excercise.id %>">
-            <%= excercise.created_at %>
+          <a href="/ejercicios/<%= ejercicio.id %>">
+            <%= ejercicio.created_at %>
           </a>
           <div class="btn-group btn-group-xs pull-right">
-            <a href="/excercises/<%= excercise.id %>" class="btn btn-primary">
+            <a href="/ejercicios/<%= ejercicio.id %>" class="btn btn-primary">
               <i class="fa fa-search-plus"></i>
             </a>
-            <a href="/excercises/<%= excercise.id %>/edit" class="btn btn-warning">
+            <a href="/ejercicios/<%= ejercicio.id %>/edit" class="btn btn-warning">
               <i class="fa fa-edit"></i>
             </a>
-            <a href="/delete_excercise/<%= excercise.id %>" class="btn btn-danger" rel="nofollow">
+            <a href="/delete_ejercicio/<%= ejercicio.id %>" class="btn btn-danger" rel="nofollow">
               <i class="fa fa-trash-o"></i>
             </a>
           </div>

@@ -1,7 +1,7 @@
 class ObjetivosController < ApplicationController
   def index
     @q = Objetivo.ransack(params[:q])
-    @objetivos = @q.result(:distinct => true).includes(:indicators, :eje, :year).page(params[:page]).per(10)
+    @objetivos = @q.result(:distinct => true).includes(:indicators, :eje).page(params[:page]).per(10)
 
     render("objetivos/index.html.erb")
   end
@@ -22,11 +22,9 @@ class ObjetivosController < ApplicationController
   def create
     @objetivo = Objetivo.new
 
-    @objetivo.pre_objetivo_id = params[:pre_objetivo_id]
-    @objetivo.next_objetivo_id = params[:next_objetivo_id]
     @objetivo.eje_id = params[:eje_id]
-    @objetivo.description = params[:description]
-    @objetivo.nivel_id = params[:nivel_id]
+    @objetivo.descripcion = params[:descripcion]
+    @objetivo.numeral = params[:numeral]
 
     save_status = @objetivo.save
 
@@ -53,11 +51,9 @@ class ObjetivosController < ApplicationController
   def update
     @objetivo = Objetivo.find(params[:id])
 
-    @objetivo.pre_objetivo_id = params[:pre_objetivo_id]
-    @objetivo.next_objetivo_id = params[:next_objetivo_id]
     @objetivo.eje_id = params[:eje_id]
-    @objetivo.description = params[:description]
-    @objetivo.nivel_id = params[:nivel_id]
+    @objetivo.descripcion = params[:descripcion]
+    @objetivo.numeral = params[:numeral]
 
     save_status = @objetivo.save
 

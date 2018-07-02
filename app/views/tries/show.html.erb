@@ -9,7 +9,7 @@
       <dd>
         <% if @try.user.present? %>
           <a href="/users/<%= @try.user_id %>">
-            <%= @try.user.email %>
+            <%= @try.user.created_at %>
           </a>
         <% end %>
       </dd>
@@ -17,7 +17,7 @@
       <dt>Excercise</dt>
       <dd>
         <% if @try.excercise.present? %>
-          <a href="/excercises/<%= @try.excercise_id %>">
+          <a href="/ejercicios/<%= @try.excercise_id %>">
             <%= @try.excercise.created_at %>
           </a>
         <% end %>
@@ -31,6 +31,15 @@
 
       <dt>Active</dt>
       <dd><%= @try.active %></dd>
+
+      <dt>Intento guia</dt>
+      <dd>
+        <% if @try.intento_guia.present? %>
+          <a href="/intento_tests/<%= @try.intento_guia_id %>">
+            <%= @try.intento_guia.test_id %>
+          </a>
+        <% end %>
+      </dd>
 
     </dl>
 

@@ -9,9 +9,21 @@
       <p class="lead">Narrow results:</p>
 
         <div class="form-group">
-    <%= f.label :description_cont, "Description contains" %>
-    <%= f.text_field :description_cont, :class => "form-control", :placeholder => "Description contains" %>
+    <%= f.label :descripcion_cont, "Descripcion contains" %>
+    <%= f.text_field :descripcion_cont, :class => "form-control", :placeholder => "Descripcion contains" %>
   </div>
+
+<div class="form-group">
+  <%= f.label :numeral, "Numeral" %>
+  <div class="row">
+    <div class='col-md-6 mb-1'>
+      <%= f.text_field :numeral_gteq, :class => "form-control", :placeholder => "Numeral greater than or equal to" %>
+    </div>
+    <div class='col-md-6'>
+      <%= f.text_field :numeral_lteq, :class => "form-control", :placeholder => "Numeral less than or equal to" %>
+    </div>
+  </div>
+</div>
 
 <div class="form-group">
           <%= f.label :created_at, "Created at" %>
@@ -54,11 +66,16 @@
       </script>
 
         <div class="form-group">
-          <%= f.label :created_at, "Excercise Created at" %>
+      <%= f.label :tributarios_contenido_name_cont, "Tributo contenido_name contains" %>
+      <%= f.text_field :tributarios_contenido_name_cont, :class => "form-control", :placeholder => "Tributo contenido_name contains" %>
+    </div>
+
+<div class="form-group">
+          <%= f.label :created_at, "Ejercicio Created at" %>
           <div class="row">
             <div class='col-md-6 mb-1'>
-              <div class='input-group date' id='excercisesgteqcreated_atPicker'>
-                  <%= f.text_field :excercises_created_at_gteq, :class => "form-control", :placeholder => "Excercise Created at greater than or equal to" %>
+              <div class='input-group date' id='ejerciciosgteqcreated_atPicker'>
+                  <%= f.text_field :ejercicios_created_at_gteq, :class => "form-control", :placeholder => "Ejercicio Created at greater than or equal to" %>
                   <span class="input-group-addon">
                       <span class="glyphicon glyphicon-calendar"></span>
                   </span>
@@ -66,8 +83,8 @@
             </div>
 
             <div class='col-md-6'>
-              <div class='input-group date' id='excerciseslteqcreated_atPicker'>
-                  <%= f.text_field :excercises_created_at_lteq, :class => "form-control", :placeholder => "Excercise Created at less than or equal to" %>
+              <div class='input-group date' id='ejercicioslteqcreated_atPicker'>
+                  <%= f.text_field :ejercicios_created_at_lteq, :class => "form-control", :placeholder => "Ejercicio Created at less than or equal to" %>
                   <span class="input-group-addon">
                       <span class="glyphicon glyphicon-calendar"></span>
                   </span>
@@ -77,105 +94,30 @@
       </div>
       <script type="text/javascript">
           $(function () {
-              $('#excercisesgteqcreated_atPicker').datetimepicker({
+              $('#ejerciciosgteqcreated_atPicker').datetimepicker({
                   format: 'YYYY-MM-DD hh:mm:SS'
               });
-              $('#excerciseslteqcreated_atPicker').datetimepicker({
+              $('#ejercicioslteqcreated_atPicker').datetimepicker({
                   useCurrent: false,
                   format: 'YYYY-MM-DD hh:mm:SS'
               });
-              $('#excercisesgteqcreated_atPicker').on("dp.change", function (e) {
-                  $('#excerciseslteqcreated_atPicker').data("DateTimePicker").minDate(e.date);
+              $('#ejerciciosgteqcreated_atPicker').on("dp.change", function (e) {
+                  $('#ejercicioslteqcreated_atPicker').data("DateTimePicker").minDate(e.date);
               });
-              $('#excerciseslteqcreated_atPicker').on("dp.change", function (e) {
-                  $('#excercisesgteqcreated_atPicker').data("DateTimePicker").maxDate(e.date);
+              $('#ejercicioslteqcreated_atPicker').on("dp.change", function (e) {
+                  $('#ejerciciosgteqcreated_atPicker').data("DateTimePicker").maxDate(e.date);
               });
           });
       </script>
 
 <div class="form-group">
-      <%= f.label :go_to_indicator_description_cont, "Indicator description contains" %>
-      <%= f.text_field :go_to_indicator_description_cont, :class => "form-control", :placeholder => "Indicator description contains" %>
+      <%= f.label :objetivo_descripcion_cont, "Objetivo descripcion contains" %>
+      <%= f.text_field :objetivo_descripcion_cont, :class => "form-control", :placeholder => "Objetivo descripcion contains" %>
     </div>
 
 <div class="form-group">
-      <%= f.label :preceding_indicator_description_cont, "Indicator description contains" %>
-      <%= f.text_field :preceding_indicator_description_cont, :class => "form-control", :placeholder => "Indicator description contains" %>
-    </div>
-
-<div class="form-group">
-      <%= f.label :coming_from_indicator_description_cont, "Indicator description contains" %>
-      <%= f.text_field :coming_from_indicator_description_cont, :class => "form-control", :placeholder => "Indicator description contains" %>
-    </div>
-
-<div class="form-group">
-      <%= f.label :next_indicator_description_cont, "Indicator description contains" %>
-      <%= f.text_field :next_indicator_description_cont, :class => "form-control", :placeholder => "Indicator description contains" %>
-    </div>
-
-<div class="form-group">
-      <%= f.label :go_to_indicator_description_cont, "Indicator description contains" %>
-      <%= f.text_field :go_to_indicator_description_cont, :class => "form-control", :placeholder => "Indicator description contains" %>
-    </div>
-
-<div class="form-group">
-      <%= f.label :preceding_indicator_description_cont, "Indicator description contains" %>
-      <%= f.text_field :preceding_indicator_description_cont, :class => "form-control", :placeholder => "Indicator description contains" %>
-    </div>
-
-<div class="form-group">
-      <%= f.label :coming_from_indicator_description_cont, "Indicator description contains" %>
-      <%= f.text_field :coming_from_indicator_description_cont, :class => "form-control", :placeholder => "Indicator description contains" %>
-    </div>
-
-<div class="form-group">
-      <%= f.label :next_indicator_description_cont, "Indicator description contains" %>
-      <%= f.text_field :next_indicator_description_cont, :class => "form-control", :placeholder => "Indicator description contains" %>
-    </div>
-
-<div class="form-group">
-      <%= f.label :go_to_indicator_description_cont, "Indicator description contains" %>
-      <%= f.text_field :go_to_indicator_description_cont, :class => "form-control", :placeholder => "Indicator description contains" %>
-    </div>
-
-<div class="form-group">
-      <%= f.label :preceding_indicator_description_cont, "Indicator description contains" %>
-      <%= f.text_field :preceding_indicator_description_cont, :class => "form-control", :placeholder => "Indicator description contains" %>
-    </div>
-
-<div class="form-group">
-      <%= f.label :go_to_indicator_description_cont, "Indicator description contains" %>
-      <%= f.text_field :go_to_indicator_description_cont, :class => "form-control", :placeholder => "Indicator description contains" %>
-    </div>
-
-<div class="form-group">
-      <%= f.label :preceding_indicator_description_cont, "Indicator description contains" %>
-      <%= f.text_field :preceding_indicator_description_cont, :class => "form-control", :placeholder => "Indicator description contains" %>
-    </div>
-
-<div class="form-group">
-      <%= f.label :coming_from_indicator_description_cont, "Indicator description contains" %>
-      <%= f.text_field :coming_from_indicator_description_cont, :class => "form-control", :placeholder => "Indicator description contains" %>
-    </div>
-
-<div class="form-group">
-      <%= f.label :next_indicator_description_cont, "Indicator description contains" %>
-      <%= f.text_field :next_indicator_description_cont, :class => "form-control", :placeholder => "Indicator description contains" %>
-    </div>
-
-<div class="form-group">
-      <%= f.label :coming_from_indicator_description_cont, "Indicator description contains" %>
-      <%= f.text_field :coming_from_indicator_description_cont, :class => "form-control", :placeholder => "Indicator description contains" %>
-    </div>
-
-<div class="form-group">
-      <%= f.label :next_indicator_description_cont, "Indicator description contains" %>
-      <%= f.text_field :next_indicator_description_cont, :class => "form-control", :placeholder => "Indicator description contains" %>
-    </div>
-
-<div class="form-group">
-      <%= f.label :objetivo_description_cont, "Objetivo description contains" %>
-      <%= f.text_field :objetivo_description_cont, :class => "form-control", :placeholder => "Objetivo description contains" %>
+      <%= f.label :contenidos_nombre_cont, "Contenido nombre contains" %>
+      <%= f.text_field :contenidos_nombre_cont, :class => "form-control", :placeholder => "Contenido nombre contains" %>
     </div>
 
       <%= f.submit :class => "btn btn-primary btn-block mb-1" %>
@@ -192,37 +134,23 @@
   <div class="col-md-12">
     <table class="table table-striped table-hover">
       <tr>
-        <th>Pre indicator</th>
-        <th>Next indicator</th>
         <th>Objetivo</th>
-        <th>Description</th>
+        <th>Descripcion</th>
+        <th>Numeral</th>
         <th>Actions</th>
       </tr>
 
       <% @indicators.each do |indicator| %>
       <tr>
         <td>
-          <% if indicator.preceding_indicator.present? %>
-            <a href="/indicators/<%= indicator.preceding_indicator.id %>">
-              <%= indicator.preceding_indicator.description %>
-            </a>
-          <% end %>
-        </td>
-        <td>
-          <% if indicator.next_indicator.present? %>
-            <a href="/indicators/<%= indicator.next_indicator.id %>">
-              <%= indicator.next_indicator.description %>
-            </a>
-          <% end %>
-        </td>
-        <td>
           <% if indicator.objetivo.present? %>
             <a href="/objetivos/<%= indicator.objetivo.id %>">
-              <%= indicator.objetivo.description %>
+              <%= indicator.objetivo.descripcion %>
             </a>
           <% end %>
         </td>
-        <td><%= indicator.description %></td>
+        <td><%= indicator.descripcion %></td>
+        <td><%= indicator.numeral %></td>
         <td>
           <a href="/indicators/<%= indicator.id %>" class="btn btn-primary">Show</a>
           <a href="/indicators/<%= indicator.id %>/edit" class="btn btn-warning">Edit</a>

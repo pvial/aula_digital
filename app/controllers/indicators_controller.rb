@@ -1,13 +1,14 @@
 class IndicatorsController < ApplicationController
   def index
     @q = Indicator.ransack(params[:q])
-    @indicators = @q.result(:distinct => true).includes(:excercises, :go_to_indicator, :preceding_indicator, :coming_from_indicator, :next_indicator, :go_to_indicator, :preceding_indicator, :coming_from_indicator, :next_indicator, :go_to_indicator, :preceding_indicator, :go_to_indicator, :preceding_indicator, :coming_from_indicator, :next_indicator, :coming_from_indicator, :next_indicator, :objetivo).page(params[:page]).per(10)
+    @indicators = @q.result(:distinct => true).includes(:tributarios, :ejercicios, :objetivo, :contenidos).page(params[:page]).per(10)
 
     render("indicators/index.html.erb")
   end
 
   def show
-    @excercise = Excercise.new
+    @ejercicio = Ejercicio.new
+    @tributo = Tributo.new
     @indicator = Indicator.find(params[:id])
 
     render("indicators/show.html.erb")
@@ -22,10 +23,9 @@ class IndicatorsController < ApplicationController
   def create
     @indicator = Indicator.new
 
-    @indicator.pre_indicator_id = params[:pre_indicator_id]
-    @indicator.next_indicator_id = params[:next_indicator_id]
     @indicator.objetivo_id = params[:objetivo_id]
-    @indicator.description = params[:description]
+    @indicator.descripcion = params[:descripcion]
+    @indicator.numeral = params[:numeral]
 
     save_status = @indicator.save
 
@@ -52,10 +52,9 @@ class IndicatorsController < ApplicationController
   def update
     @indicator = Indicator.find(params[:id])
 
-    @indicator.pre_indicator_id = params[:pre_indicator_id]
-    @indicator.next_indicator_id = params[:next_indicator_id]
     @indicator.objetivo_id = params[:objetivo_id]
-    @indicator.description = params[:description]
+    @indicator.descripcion = params[:descripcion]
+    @indicator.numeral = params[:numeral]
 
     save_status = @indicator.save
 

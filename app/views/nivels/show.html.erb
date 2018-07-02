@@ -5,8 +5,14 @@
 <div class="row">
   <div class="col-md-12 mb-2">
     <dl class="dl-horizontal">
-      <dt>Intended year</dt>
-      <dd><%= @nivel.intended_year %></dd>
+      <dt>User</dt>
+      <dd>
+        <% if @nivel.user.present? %>
+          <a href="/users/<%= @nivel.user_id %>">
+            <%= @nivel.user.created_at %>
+          </a>
+        <% end %>
+      </dd>
 
     </dl>
 
@@ -24,28 +30,28 @@
   </div>
 </div>
 
-<!-- A Nivel has many objetivos -->
+<!-- A Nivel has many puntajes -->
 
 <div class="row">
   <div class="col-md-12">
     <ul class="list-group">
       <li class="list-group-item list-group-item-info">
-        Objetivos
+        Puntajes
       </li>
 
-      <% @nivel.objetivos.each do |objetivo| %>
+      <% @nivel.puntajes.each do |puntaje| %>
         <li class="list-group-item">
-          <a href="/objetivos/<%= objetivo.id %>">
-            <%= objetivo.description %>
+          <a href="/puntajes/<%= puntaje.id %>">
+            <%= puntaje.nivel_id %>
           </a>
           <div class="btn-group btn-group-xs pull-right">
-            <a href="/objetivos/<%= objetivo.id %>" class="btn btn-primary">
+            <a href="/puntajes/<%= puntaje.id %>" class="btn btn-primary">
               <i class="fa fa-search-plus"></i>
             </a>
-            <a href="/objetivos/<%= objetivo.id %>/edit" class="btn btn-warning">
+            <a href="/puntajes/<%= puntaje.id %>/edit" class="btn btn-warning">
               <i class="fa fa-edit"></i>
             </a>
-            <a href="/delete_objetivo/<%= objetivo.id %>" class="btn btn-danger" rel="nofollow">
+            <a href="/delete_puntaje/<%= puntaje.id %>" class="btn btn-danger" rel="nofollow">
               <i class="fa fa-trash-o"></i>
             </a>
           </div>
@@ -53,96 +59,33 @@
       <% end %>
 
       <li class="list-group-item">
-        <form action="/create_objetivo" method="post">
-      <!-- Hidden input for authenticity token to protect from forgery -->
-      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
-
-      <!-- Label and input for pre_objetivo_id -->
-      <div class="form-group">
-        <label for="pre_objetivo_id" class="control-label">
-          Pre objetivo
-        </label>
-
-        <input type="text" id="pre_objetivo_id" name="pre_objetivo_id" placeholder="Pre objetivo" class="form-control" value="">
-      </div>
-
-      <!-- Label and input for next_objetivo_id -->
-      <div class="form-group">
-        <label for="next_objetivo_id" class="control-label">
-          Next objetivo
-        </label>
-
-        <input type="text" id="next_objetivo_id" name="next_objetivo_id" placeholder="Next objetivo" class="form-control" value="">
-      </div>
-
-      <!-- Label and input for eje_id -->
-      <div class="form-group">
-        <label for="eje_id" class="control-label">
-          Eje
-        </label>
-
-        <%= select_tag(:eje_id, options_from_collection_for_select(Eje.all, :id, :description), :class => "form-control") %>
-      </div>
-
-      <!-- Label and input for description -->
-      <div class="form-group">
-        <label for="description" class="control-label">
-          Description
-        </label>
-
-        <textarea id="description" name="description" placeholder="Description" class="form-control" rows="3"></textarea>
-      </div>
-
-      <!-- Label and input for nivel_id -->
-      <input type="hidden" name="nivel_id" value="<%= @nivel.id %>">
-
-      <button class="btn btn-block btn-success">
-        Create Objetivo
-      </button>
-    </form>
-      </li>
-    </ul>
-  </div>
-</div>
-
-<!-- A Nivel has many classrooms -->
-
-<div class="row">
-  <div class="col-md-12">
-    <ul class="list-group">
-      <li class="list-group-item list-group-item-info">
-        Classrooms
-      </li>
-
-      <% @nivel.classrooms.each do |classroom| %>
-        <li class="list-group-item">
-          <a href="/classrooms/<%= classroom.id %>">
-            <%= classroom.nivel_id %>
-          </a>
-          <div class="btn-group btn-group-xs pull-right">
-            <a href="/classrooms/<%= classroom.id %>" class="btn btn-primary">
-              <i class="fa fa-search-plus"></i>
-            </a>
-            <a href="/classrooms/<%= classroom.id %>/edit" class="btn btn-warning">
-              <i class="fa fa-edit"></i>
-            </a>
-            <a href="/delete_classroom/<%= classroom.id %>" class="btn btn-danger" rel="nofollow">
-              <i class="fa fa-trash-o"></i>
-            </a>
-          </div>
-        </li>
-      <% end %>
-
-      <li class="list-group-item">
-        <form action="/create_classroom" method="post">
+        <form action="/create_puntaje" method="post">
       <!-- Hidden input for authenticity token to protect from forgery -->
       <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
       <!-- Label and input for nivel_id -->
       <input type="hidden" name="nivel_id" value="<%= @nivel.id %>">
 
+      <!-- Label and input for categoria_id -->
+      <div class="form-group">
+        <label for="categoria_id" class="control-label">
+          Categoria
+        </label>
+
+        <%= select_tag(:categoria_id, options_from_collection_for_select(Categorium.all, :id, :descripcion), :class => "form-control") %>
+      </div>
+
+      <!-- Label and input for score -->
+      <div class="form-group">
+        <label for="score" class="control-label">
+          Score
+        </label>
+
+        <input type="text" id="score" name="score" placeholder="Score" class="form-control" value="">
+      </div>
+
       <button class="btn btn-block btn-success">
-        Create Classroom
+        Create Puntaje
       </button>
     </form>
       </li>

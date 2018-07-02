@@ -18,40 +18,31 @@
       <!-- Hidden input for authenticity token to protect from forgery -->
       <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
-      <!-- Label and input for pre_indicator_id -->
-      <div class="form-group">
-        <label for="pre_indicator_id" class="control-label">
-          Pre indicator
-        </label>
-
-        <%= select_tag(:pre_indicator_id, options_from_collection_for_select(Indicator.all, :id, :description, @indicator.pre_indicator_id), :class => "form-control") %>
-      </div>
-
-      <!-- Label and input for next_indicator_id -->
-      <div class="form-group">
-        <label for="next_indicator_id" class="control-label">
-          Next indicator
-        </label>
-
-        <%= select_tag(:next_indicator_id, options_from_collection_for_select(Indicator.all, :id, :description, @indicator.next_indicator_id), :class => "form-control") %>
-      </div>
-
       <!-- Label and input for objetivo_id -->
       <div class="form-group">
         <label for="objetivo_id" class="control-label">
           Objetivo
         </label>
 
-        <%= select_tag(:objetivo_id, options_from_collection_for_select(Objetivo.all, :id, :description, @indicator.objetivo_id), :class => "form-control") %>
+        <%= select_tag(:objetivo_id, options_from_collection_for_select(Objetivo.all, :id, :descripcion, @indicator.objetivo_id), :class => "form-control") %>
       </div>
 
-      <!-- Label and input for description -->
+      <!-- Label and input for descripcion -->
       <div class="form-group">
-        <label for="description" class="control-label">
-          Description
+        <label for="descripcion" class="control-label">
+          Descripcion
         </label>
 
-        <textarea id="description" name="description" placeholder="Description" class="form-control" rows="3"><%= @indicator.description %></textarea>
+        <textarea id="descripcion" name="descripcion" placeholder="Descripcion" class="form-control" rows="3"><%= @indicator.descripcion %></textarea>
+      </div>
+
+      <!-- Label and input for numeral -->
+      <div class="form-group">
+        <label for="numeral" class="control-label">
+          Numeral
+        </label>
+
+        <input type="text" id="numeral" name="numeral" placeholder="Numeral" class="form-control" value="<%= @indicator.numeral %>">
       </div>
 
       <button class="btn btn-warning">

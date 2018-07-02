@@ -1,0 +1,171 @@
+<div class="page-header">
+  <h3>Ejercicio #<%= @ejercicio.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12 mb-2">
+    <dl class="dl-horizontal">
+      <dt>Contenido</dt>
+      <dd>
+        <% if @ejercicio.contenido.present? %>
+          <a href="/contenidos/<%= @ejercicio.contenido_id %>">
+            <%= @ejercicio.contenido.nombre %>
+          </a>
+        <% end %>
+      </dd>
+
+      <dt>Dificultad</dt>
+      <dd><%= @ejercicio.dificultad %></dd>
+
+      <dt>Imagen</dt>
+      <dd><img src="<%= @ejercicio.imagen %>" class="img-responsive"></dd>
+
+      <dt>Pregunta</dt>
+      <dd><%= @ejercicio.pregunta %></dd>
+
+      <dt>Indicador</dt>
+      <dd>
+        <% if @ejercicio.indicador.present? %>
+          <a href="/indicators/<%= @ejercicio.indicador_id %>">
+            <%= @ejercicio.indicador.descripcion %>
+          </a>
+        <% end %>
+      </dd>
+
+      <dt>Habilidad</dt>
+      <dd><%= @ejercicio.habilidad %></dd>
+
+    </dl>
+
+    <div class="btn-group btn-group-justified">
+      <a href="/ejercicios" class="btn btn-primary">
+        Back
+      </a>
+      <a href="/ejercicios/<%= @ejercicio.id %>/edit" class="btn btn-warning">
+        Edit
+      </a>
+      <a href="/delete_ejercicio/<%= @ejercicio.id %>" class="btn btn-danger" rel="nofollow">
+        Delete
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- A Ejercicio has many tries -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-info">
+        Tries
+      </li>
+
+      <% @ejercicio.tries.each do |try| %>
+        <li class="list-group-item">
+          <a href="/tries/<%= try.id %>">
+            <%= try.user_id %>
+          </a>
+          <div class="btn-group btn-group-xs pull-right">
+            <a href="/tries/<%= try.id %>" class="btn btn-primary">
+              <i class="fa fa-search-plus"></i>
+            </a>
+            <a href="/tries/<%= try.id %>/edit" class="btn btn-warning">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="/delete_try/<%= try.id %>" class="btn btn-danger" rel="nofollow">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </div>
+        </li>
+      <% end %>
+
+      <li class="list-group-item">
+        <form action="/create_try" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for user_id -->
+      <input type="hidden" name="user_id" value="<%= current_user.id %>">
+
+      <!-- Label and input for excercise_id -->
+      <div class="form-group">
+        <label for="excercise_id" class="control-label">
+          Excercise
+        </label>
+
+        <%= select_tag(:excercise_id, options_from_collection_for_select(Ejercicio.all, :id, :created_at), :class => "form-control") %>
+      </div>
+
+      <!-- Label and input for user_answer -->
+      <div class="form-group">
+        <label for="user_answer" class="control-label">
+          User answer
+        </label>
+
+        <input type="text" id="user_answer" name="user_answer" placeholder="User answer" class="form-control" value="">
+      </div>
+
+      <!-- Label and input for correct -->
+      <div class="checkbox">
+        <label for="correct">
+          <input type="checkbox" id="correct" name="correct" value="1" <%= "checked" if @try.correct %>>
+          Correct
+        </label>
+      </div>
+
+      <!-- Label and input for active -->
+      <div class="checkbox">
+        <label for="active">
+          <input type="checkbox" id="active" name="active" value="1" <%= "checked" if @try.active %>>
+          Active
+        </label>
+      </div>
+
+      <!-- Label and input for intento_guia_id -->
+      <div class="form-group">
+        <label for="intento_guia_id" class="control-label">
+          Intento guia
+        </label>
+
+        <%= select_tag(:intento_guia_id, options_from_collection_for_select(IntentoTest.all, :id, :test_id), :class => "form-control") %>
+      </div>
+
+      <button class="btn btn-block btn-success">
+        Create Try
+      </button>
+    </form>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!-- A Ejercicio has many users -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-info">
+        Users
+      </li>
+
+      <% @ejercicio.users.each do |user| %>
+        <li class="list-group-item">
+          <a href="/users/<%= user.id %>">
+            <%= user.created_at %>
+          </a>
+          <div class="btn-group btn-group-xs pull-right">
+            <a href="/users/<%= user.id %>" class="btn btn-primary">
+              <i class="fa fa-search-plus"></i>
+            </a>
+            <a href="/users/<%= user.id %>/edit" class="btn btn-warning">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="/delete_user/<%= user.id %>" class="btn btn-danger" rel="nofollow">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
