@@ -6,13 +6,7 @@
   <div class="col-md-12 mb-2">
     <dl class="dl-horizontal">
       <dt>Materia</dt>
-      <dd>
-        <% if @eje.materia.present? %>
-          <a href="/materia/<%= @eje.materia_id %>">
-            <%= @eje.materia.description %>
-          </a>
-        <% end %>
-      </dd>
+      <dd><%= @eje.materia_id %></dd>
 
       <dt>Description</dt>
       <dd><%= @eje.description %></dd>
@@ -45,7 +39,7 @@
       <% @eje.objetivos.each do |objetivo| %>
         <li class="list-group-item">
           <a href="/objetivos/<%= objetivo.id %>">
-            <%= objetivo.description %>
+            <%= objetivo.descripcion %>
           </a>
           <div class="btn-group btn-group-xs pull-right">
             <a href="/objetivos/<%= objetivo.id %>" class="btn btn-primary">
@@ -66,47 +60,83 @@
       <!-- Hidden input for authenticity token to protect from forgery -->
       <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
-      <!-- Label and input for pre_objetivo_id -->
+      <!-- Label and input for eje_id -->
+      <input type="hidden" name="eje_id" value="<%= @eje.id %>">
+
+      <!-- Label and input for descripcion -->
       <div class="form-group">
-        <label for="pre_objetivo_id" class="control-label">
-          Pre objetivo
+        <label for="descripcion" class="control-label">
+          Descripcion
         </label>
 
-        <input type="text" id="pre_objetivo_id" name="pre_objetivo_id" placeholder="Pre objetivo" class="form-control" value="">
+        <textarea id="descripcion" name="descripcion" placeholder="Descripcion" class="form-control" rows="3"></textarea>
       </div>
 
-      <!-- Label and input for next_objetivo_id -->
+      <!-- Label and input for numeral -->
       <div class="form-group">
-        <label for="next_objetivo_id" class="control-label">
-          Next objetivo
+        <label for="numeral" class="control-label">
+          Numeral
         </label>
 
-        <input type="text" id="next_objetivo_id" name="next_objetivo_id" placeholder="Next objetivo" class="form-control" value="">
+        <input type="text" id="numeral" name="numeral" placeholder="Numeral" class="form-control" value="">
+      </div>
+
+      <button class="btn btn-block btn-success">
+        Create Objetivo
+      </button>
+    </form>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!-- A Eje has many materias -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-info">
+        Materias
+      </li>
+
+      <% @eje.materias.each do |categorium| %>
+        <li class="list-group-item">
+          <a href="/categoria/<%= categorium.id %>">
+            <%= categorium.descripcion %>
+          </a>
+          <div class="btn-group btn-group-xs pull-right">
+            <a href="/categoria/<%= categorium.id %>" class="btn btn-primary">
+              <i class="fa fa-search-plus"></i>
+            </a>
+            <a href="/categoria/<%= categorium.id %>/edit" class="btn btn-warning">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="/delete_categorium/<%= categorium.id %>" class="btn btn-danger" rel="nofollow">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </div>
+        </li>
+      <% end %>
+
+      <li class="list-group-item">
+        <form action="/create_categorium" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for descripcion -->
+      <div class="form-group">
+        <label for="descripcion" class="control-label">
+          Descripcion
+        </label>
+
+        <textarea id="descripcion" name="descripcion" placeholder="Descripcion" class="form-control" rows="3"></textarea>
       </div>
 
       <!-- Label and input for eje_id -->
       <input type="hidden" name="eje_id" value="<%= @eje.id %>">
 
-      <!-- Label and input for description -->
-      <div class="form-group">
-        <label for="description" class="control-label">
-          Description
-        </label>
-
-        <textarea id="description" name="description" placeholder="Description" class="form-control" rows="3"></textarea>
-      </div>
-
-      <!-- Label and input for nivel_id -->
-      <div class="form-group">
-        <label for="nivel_id" class="control-label">
-          Nivel
-        </label>
-
-        <%= select_tag(:nivel_id, options_from_collection_for_select(Nivel.all, :id, :intended_year), :class => "form-control") %>
-      </div>
-
       <button class="btn btn-block btn-success">
-        Create Objetivo
+        Create Categorium
       </button>
     </form>
       </li>

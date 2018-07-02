@@ -1,0 +1,82 @@
+<!-- Validation failure messages -->
+<% if @ejercicio.errors.any? %>
+  <% @ejercicio.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Add Ejercicio</h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/create_ejercicio" method="post" enctype="multipart/form-data">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for contenido_id -->
+      <div class="form-group">
+        <label for="contenido_id" class="control-label">
+          Contenido
+        </label>
+
+        <%= select_tag(:contenido_id, options_from_collection_for_select(Contenido.all, :id, :nombre, @ejercicio.contenido_id), :class => "form-control") %>
+      </div>
+
+      <!-- Label and input for dificultad -->
+      <div class="form-group">
+        <label for="dificultad" class="control-label">
+          Dificultad
+        </label>
+
+        <input type="text" id="dificultad" name="dificultad" placeholder="Dificultad" class="form-control" value="<%= @ejercicio.dificultad %>">
+      </div>
+
+      <!-- Label and input for imagen -->
+      <div class="form-group">
+        <label for="imagen" class="control-label">
+          Imagen
+        </label>
+
+        <input type="file" id="imagen" name="imagen" class="form-control">
+      </div>
+
+      <!-- Label and input for pregunta -->
+      <div class="form-group">
+        <label for="pregunta" class="control-label">
+          Pregunta
+        </label>
+
+        <textarea id="pregunta" name="pregunta" placeholder="Pregunta" class="form-control" rows="3"><%= @ejercicio.pregunta %></textarea>
+      </div>
+
+      <!-- Label and input for indicador_id -->
+      <div class="form-group">
+        <label for="indicador_id" class="control-label">
+          Indicador
+        </label>
+
+        <%= select_tag(:indicador_id, options_from_collection_for_select(Indicator.all, :id, :descripcion, @ejercicio.indicador_id), :class => "form-control") %>
+      </div>
+
+      <!-- Label and input for habilidad -->
+      <div class="form-group">
+        <label for="habilidad" class="control-label">
+          Habilidad
+        </label>
+
+        <input type="text" id="habilidad" name="habilidad" placeholder="Habilidad" class="form-control" value="<%= @ejercicio.habilidad %>">
+      </div>
+
+      <button class="btn btn-success">
+        Create Ejercicio
+      </button>
+      or
+      <a href="/ejercicios">Cancel</a>
+    </form>
+  </div>
+</div>

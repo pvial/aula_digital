@@ -1,0 +1,196 @@
+<div class="page-header">
+  <h3>Test #<%= @test.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12 mb-2">
+    <dl class="dl-horizontal">
+      <dt>Profesor</dt>
+      <dd>
+        <% if @test.profesor.present? %>
+          <a href="/profesors/<%= @test.profesor_id %>">
+            <%= @test.profesor.email %>
+          </a>
+        <% end %>
+      </dd>
+
+    </dl>
+
+    <div class="btn-group btn-group-justified">
+      <a href="/tests" class="btn btn-primary">
+        Back
+      </a>
+      <a href="/tests/<%= @test.id %>/edit" class="btn btn-warning">
+        Edit
+      </a>
+      <a href="/delete_test/<%= @test.id %>" class="btn btn-danger" rel="nofollow">
+        Delete
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- A Test has many intento_tests -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-info">
+        Intento Tests
+      </li>
+
+      <% @test.intento_tests.each do |intento_test| %>
+        <li class="list-group-item">
+          <a href="/intento_tests/<%= intento_test.id %>">
+            <%= intento_test.test_id %>
+          </a>
+          <div class="btn-group btn-group-xs pull-right">
+            <a href="/intento_tests/<%= intento_test.id %>" class="btn btn-primary">
+              <i class="fa fa-search-plus"></i>
+            </a>
+            <a href="/intento_tests/<%= intento_test.id %>/edit" class="btn btn-warning">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="/delete_intento_test/<%= intento_test.id %>" class="btn btn-danger" rel="nofollow">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </div>
+        </li>
+      <% end %>
+
+      <li class="list-group-item">
+        <form action="/create_intento_test" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for test_id -->
+      <input type="hidden" name="test_id" value="<%= @test.id %>">
+
+      <!-- Label and input for user_id -->
+      <input type="hidden" name="user_id" value="<%= current_user.id %>">
+
+      <button class="btn btn-block btn-success">
+        Create Intento Test
+      </button>
+    </form>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!-- A Test has many asignacions -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-info">
+        Asignacions
+      </li>
+
+      <% @test.asignacions.each do |asignacion| %>
+        <li class="list-group-item">
+          <a href="/asignacions/<%= asignacion.id %>">
+            <%= asignacion.test_id %>
+          </a>
+          <div class="btn-group btn-group-xs pull-right">
+            <a href="/asignacions/<%= asignacion.id %>" class="btn btn-primary">
+              <i class="fa fa-search-plus"></i>
+            </a>
+            <a href="/asignacions/<%= asignacion.id %>/edit" class="btn btn-warning">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="/delete_asignacion/<%= asignacion.id %>" class="btn btn-danger" rel="nofollow">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </div>
+        </li>
+      <% end %>
+
+      <li class="list-group-item">
+        <form action="/create_asignacion" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for test_id -->
+      <input type="hidden" name="test_id" value="<%= @test.id %>">
+
+      <!-- Label and input for sala_id -->
+      <div class="form-group">
+        <label for="sala_id" class="control-label">
+          Sala
+        </label>
+
+        <%= select_tag(:sala_id, options_from_collection_for_select(Sala.all, :id, :profesor_id), :class => "form-control") %>
+      </div>
+
+      <button class="btn btn-block btn-success">
+        Create Asignacion
+      </button>
+    </form>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!-- A Test has many seccions -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-info">
+        Seccions
+      </li>
+
+      <% @test.seccions.each do |seccion| %>
+        <li class="list-group-item">
+          <a href="/seccions/<%= seccion.id %>">
+            <%= seccion.created_at %>
+          </a>
+          <div class="btn-group btn-group-xs pull-right">
+            <a href="/seccions/<%= seccion.id %>" class="btn btn-primary">
+              <i class="fa fa-search-plus"></i>
+            </a>
+            <a href="/seccions/<%= seccion.id %>/edit" class="btn btn-warning">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="/delete_seccion/<%= seccion.id %>" class="btn btn-danger" rel="nofollow">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </div>
+        </li>
+      <% end %>
+
+      <li class="list-group-item">
+        <form action="/create_seccion" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for contenido_id -->
+      <div class="form-group">
+        <label for="contenido_id" class="control-label">
+          Contenido
+        </label>
+
+        <%= select_tag(:contenido_id, options_from_collection_for_select(Contenido.all, :id, :nombre), :class => "form-control") %>
+      </div>
+
+      <!-- Label and input for test_id -->
+      <input type="hidden" name="test_id" value="<%= @test.id %>">
+
+      <!-- Label and input for numero_ejercicios -->
+      <div class="form-group">
+        <label for="numero_ejercicios" class="control-label">
+          Numero ejercicios
+        </label>
+
+        <input type="text" id="numero_ejercicios" name="numero_ejercicios" placeholder="Numero ejercicios" class="form-control" value="">
+      </div>
+
+      <button class="btn btn-block btn-success">
+        Create Seccion
+      </button>
+    </form>
+      </li>
+    </ul>
+  </div>
+</div>

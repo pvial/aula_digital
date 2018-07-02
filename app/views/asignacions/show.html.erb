@@ -1,0 +1,40 @@
+<div class="page-header">
+  <h3>Asignacion #<%= @asignacion.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12 mb-2">
+    <dl class="dl-horizontal">
+      <dt>Test</dt>
+      <dd>
+        <% if @asignacion.test.present? %>
+          <a href="/tests/<%= @asignacion.test_id %>">
+            <%= @asignacion.test.profesor_id %>
+          </a>
+        <% end %>
+      </dd>
+
+      <dt>Sala</dt>
+      <dd>
+        <% if @asignacion.sala.present? %>
+          <a href="/salas/<%= @asignacion.sala_id %>">
+            <%= @asignacion.sala.profesor_id %>
+          </a>
+        <% end %>
+      </dd>
+
+    </dl>
+
+    <div class="btn-group btn-group-justified">
+      <a href="/asignacions" class="btn btn-primary">
+        Back
+      </a>
+      <a href="/asignacions/<%= @asignacion.id %>/edit" class="btn btn-warning">
+        Edit
+      </a>
+      <a href="/delete_asignacion/<%= @asignacion.id %>" class="btn btn-danger" rel="nofollow">
+        Delete
+      </a>
+    </div>
+  </div>
+</div>

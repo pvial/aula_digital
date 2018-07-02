@@ -1,0 +1,129 @@
+<div class="page-header">
+  <h3>Sala #<%= @sala.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12 mb-2">
+    <dl class="dl-horizontal">
+      <dt>Profesor</dt>
+      <dd>
+        <% if @sala.profesor.present? %>
+          <a href="/profesors/<%= @sala.profesor_id %>">
+            <%= @sala.profesor.email %>
+          </a>
+        <% end %>
+      </dd>
+
+      <dt>Colegio</dt>
+      <dd>
+        <% if @sala.colegio.present? %>
+          <a href="/colegios/<%= @sala.colegio_id %>">
+            <%= @sala.colegio.nombre %>
+          </a>
+        <% end %>
+      </dd>
+
+    </dl>
+
+    <div class="btn-group btn-group-justified">
+      <a href="/salas" class="btn btn-primary">
+        Back
+      </a>
+      <a href="/salas/<%= @sala.id %>/edit" class="btn btn-warning">
+        Edit
+      </a>
+      <a href="/delete_sala/<%= @sala.id %>" class="btn btn-danger" rel="nofollow">
+        Delete
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- A Sala has many asignacions -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-info">
+        Asignacions
+      </li>
+
+      <% @sala.asignacions.each do |asignacion| %>
+        <li class="list-group-item">
+          <a href="/asignacions/<%= asignacion.id %>">
+            <%= asignacion.test_id %>
+          </a>
+          <div class="btn-group btn-group-xs pull-right">
+            <a href="/asignacions/<%= asignacion.id %>" class="btn btn-primary">
+              <i class="fa fa-search-plus"></i>
+            </a>
+            <a href="/asignacions/<%= asignacion.id %>/edit" class="btn btn-warning">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="/delete_asignacion/<%= asignacion.id %>" class="btn btn-danger" rel="nofollow">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </div>
+        </li>
+      <% end %>
+
+      <li class="list-group-item">
+        <form action="/create_asignacion" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for test_id -->
+      <div class="form-group">
+        <label for="test_id" class="control-label">
+          Test
+        </label>
+
+        <%= select_tag(:test_id, options_from_collection_for_select(Test.all, :id, :profesor_id), :class => "form-control") %>
+      </div>
+
+      <!-- Label and input for sala_id -->
+      <input type="hidden" name="sala_id" value="<%= @sala.id %>">
+
+      <button class="btn btn-block btn-success">
+        Create Asignacion
+      </button>
+    </form>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!-- A Sala has many users -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-info">
+        Users
+      </li>
+
+      <% @sala.users.each do |user| %>
+        <li class="list-group-item">
+          <a href="/users/<%= user.id %>">
+            <%= user.created_at %>
+          </a>
+          <div class="btn-group btn-group-xs pull-right">
+            <a href="/users/<%= user.id %>" class="btn btn-primary">
+              <i class="fa fa-search-plus"></i>
+            </a>
+            <a href="/users/<%= user.id %>/edit" class="btn btn-warning">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="/delete_user/<%= user.id %>" class="btn btn-danger" rel="nofollow">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </div>
+        </li>
+      <% end %>
+
+      <li class="list-group-item">
+        
+      </li>
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,43 @@
+<div class="page-header">
+  <h3>Seccion #<%= @seccion.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12 mb-2">
+    <dl class="dl-horizontal">
+      <dt>Contenido</dt>
+      <dd>
+        <% if @seccion.contenido.present? %>
+          <a href="/contenidos/<%= @seccion.contenido_id %>">
+            <%= @seccion.contenido.nombre %>
+          </a>
+        <% end %>
+      </dd>
+
+      <dt>Test</dt>
+      <dd>
+        <% if @seccion.test.present? %>
+          <a href="/tests/<%= @seccion.test_id %>">
+            <%= @seccion.test.profesor_id %>
+          </a>
+        <% end %>
+      </dd>
+
+      <dt>Numero ejercicios</dt>
+      <dd><%= @seccion.numero_ejercicios %></dd>
+
+    </dl>
+
+    <div class="btn-group btn-group-justified">
+      <a href="/seccions" class="btn btn-primary">
+        Back
+      </a>
+      <a href="/seccions/<%= @seccion.id %>/edit" class="btn btn-warning">
+        Edit
+      </a>
+      <a href="/delete_seccion/<%= @seccion.id %>" class="btn btn-danger" rel="nofollow">
+        Delete
+      </a>
+    </div>
+  </div>
+</div>

@@ -5,35 +5,20 @@
 <div class="row">
   <div class="col-md-12 mb-2">
     <dl class="dl-horizontal">
-      <dt>Pre indicator</dt>
-      <dd>
-        <% if @indicator.preceding_indicator.present? %>
-          <a href="/indicators/<%= @indicator.pre_indicator_id %>">
-            <%= @indicator.preceding_indicator.description %>
-          </a>
-        <% end %>
-      </dd>
-
-      <dt>Next indicator</dt>
-      <dd>
-        <% if @indicator.next_indicator.present? %>
-          <a href="/indicators/<%= @indicator.next_indicator_id %>">
-            <%= @indicator.next_indicator.description %>
-          </a>
-        <% end %>
-      </dd>
-
       <dt>Objetivo</dt>
       <dd>
         <% if @indicator.objetivo.present? %>
           <a href="/objetivos/<%= @indicator.objetivo_id %>">
-            <%= @indicator.objetivo.description %>
+            <%= @indicator.objetivo.descripcion %>
           </a>
         <% end %>
       </dd>
 
-      <dt>Description</dt>
-      <dd><%= @indicator.description %></dd>
+      <dt>Descripcion</dt>
+      <dd><%= @indicator.descripcion %></dd>
+
+      <dt>Numeral</dt>
+      <dd><%= @indicator.numeral %></dd>
 
     </dl>
 
@@ -51,28 +36,28 @@
   </div>
 </div>
 
-<!-- A Indicator has many excercises -->
+<!-- A Indicator has many tributarios -->
 
 <div class="row">
   <div class="col-md-12">
     <ul class="list-group">
       <li class="list-group-item list-group-item-info">
-        Excercises
+        Tributarios
       </li>
 
-      <% @indicator.excercises.each do |excercise| %>
+      <% @indicator.tributarios.each do |tributo| %>
         <li class="list-group-item">
-          <a href="/excercises/<%= excercise.id %>">
-            <%= excercise.created_at %>
+          <a href="/tributos/<%= tributo.id %>">
+            <%= tributo.contenido_name %>
           </a>
           <div class="btn-group btn-group-xs pull-right">
-            <a href="/excercises/<%= excercise.id %>" class="btn btn-primary">
+            <a href="/tributos/<%= tributo.id %>" class="btn btn-primary">
               <i class="fa fa-search-plus"></i>
             </a>
-            <a href="/excercises/<%= excercise.id %>/edit" class="btn btn-warning">
+            <a href="/tributos/<%= tributo.id %>/edit" class="btn btn-warning">
               <i class="fa fa-edit"></i>
             </a>
-            <a href="/delete_excercise/<%= excercise.id %>" class="btn btn-danger" rel="nofollow">
+            <a href="/delete_tributo/<%= tributo.id %>" class="btn btn-danger" rel="nofollow">
               <i class="fa fa-trash-o"></i>
             </a>
           </div>
@@ -80,7 +65,85 @@
       <% end %>
 
       <li class="list-group-item">
-        <form action="/create_excercise" method="post" enctype="multipart/form-data">
+        <form action="/create_tributo" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for contenido_name -->
+      <div class="form-group">
+        <label for="contenido_name" class="control-label">
+          Contenido name
+        </label>
+
+        <textarea id="contenido_name" name="contenido_name" placeholder="Contenido name" class="form-control" rows="3"></textarea>
+      </div>
+
+      <!-- Label and input for contenido_id -->
+      <div class="form-group">
+        <label for="contenido_id" class="control-label">
+          Contenido
+        </label>
+
+        <%= select_tag(:contenido_id, options_from_collection_for_select(Contenido.all, :id, :nombre), :class => "form-control") %>
+      </div>
+
+      <!-- Label and input for indicador_name -->
+      <div class="form-group">
+        <label for="indicador_name" class="control-label">
+          Indicador name
+        </label>
+
+        <textarea id="indicador_name" name="indicador_name" placeholder="Indicador name" class="form-control" rows="3"></textarea>
+      </div>
+
+      <!-- Label and input for indicador_id -->
+      <div class="form-group">
+        <label for="indicador_id" class="control-label">
+          Indicador
+        </label>
+
+        <%= select_tag(:indicador_id, options_from_collection_for_select(Indicator.all, :id, :descripcion), :class => "form-control") %>
+      </div>
+
+      <button class="btn btn-block btn-success">
+        Create Tributo
+      </button>
+    </form>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!-- A Indicator has many ejercicios -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-info">
+        Ejercicios
+      </li>
+
+      <% @indicator.ejercicios.each do |ejercicio| %>
+        <li class="list-group-item">
+          <a href="/ejercicios/<%= ejercicio.id %>">
+            <%= ejercicio.created_at %>
+          </a>
+          <div class="btn-group btn-group-xs pull-right">
+            <a href="/ejercicios/<%= ejercicio.id %>" class="btn btn-primary">
+              <i class="fa fa-search-plus"></i>
+            </a>
+            <a href="/ejercicios/<%= ejercicio.id %>/edit" class="btn btn-warning">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="/delete_ejercicio/<%= ejercicio.id %>" class="btn btn-danger" rel="nofollow">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </div>
+        </li>
+      <% end %>
+
+      <li class="list-group-item">
+        <form action="/create_ejercicio" method="post" enctype="multipart/form-data">
       <!-- Hidden input for authenticity token to protect from forgery -->
       <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
@@ -90,16 +153,7 @@
           Contenido
         </label>
 
-        <input type="text" id="contenido_id" name="contenido_id" placeholder="Contenido" class="form-control" value="">
-      </div>
-
-      <!-- Label and input for skill -->
-      <div class="form-group">
-        <label for="skill" class="control-label">
-          Skill
-        </label>
-
-        <input type="text" id="skill" name="skill" placeholder="Skill" class="form-control" value="">
+        <%= select_tag(:contenido_id, options_from_collection_for_select(Contenido.all, :id, :nombre), :class => "form-control") %>
       </div>
 
       <!-- Label and input for dificultad -->
@@ -120,23 +174,69 @@
         <input type="file" id="imagen" name="imagen" class="form-control">
       </div>
 
-      <!-- Label and input for question -->
+      <!-- Label and input for pregunta -->
       <div class="form-group">
-        <label for="question" class="control-label">
-          Question
+        <label for="pregunta" class="control-label">
+          Pregunta
         </label>
 
-        <textarea id="question" name="question" placeholder="Question" class="form-control" rows="3"></textarea>
+        <textarea id="pregunta" name="pregunta" placeholder="Pregunta" class="form-control" rows="3"></textarea>
       </div>
 
-      <!-- Label and input for indicator_id -->
-      <input type="hidden" name="indicator_id" value="<%= @indicator.id %>">
+      <!-- Label and input for indicador_id -->
+      <div class="form-group">
+        <label for="indicador_id" class="control-label">
+          Indicador
+        </label>
+
+        <%= select_tag(:indicador_id, options_from_collection_for_select(Indicator.all, :id, :descripcion), :class => "form-control") %>
+      </div>
+
+      <!-- Label and input for habilidad -->
+      <div class="form-group">
+        <label for="habilidad" class="control-label">
+          Habilidad
+        </label>
+
+        <input type="text" id="habilidad" name="habilidad" placeholder="Habilidad" class="form-control" value="">
+      </div>
 
       <button class="btn btn-block btn-success">
-        Create Excercise
+        Create Ejercicio
       </button>
     </form>
       </li>
+    </ul>
+  </div>
+</div>
+
+<!-- A Indicator has many contenidos -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-info">
+        Contenidos
+      </li>
+
+      <% @indicator.contenidos.each do |contenido| %>
+        <li class="list-group-item">
+          <a href="/contenidos/<%= contenido.id %>">
+            <%= contenido.nombre %>
+          </a>
+          <div class="btn-group btn-group-xs pull-right">
+            <a href="/contenidos/<%= contenido.id %>" class="btn btn-primary">
+              <i class="fa fa-search-plus"></i>
+            </a>
+            <a href="/contenidos/<%= contenido.id %>/edit" class="btn btn-warning">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="/delete_contenido/<%= contenido.id %>" class="btn btn-danger" rel="nofollow">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </div>
+        </li>
+      <% end %>
     </ul>
   </div>
 </div>

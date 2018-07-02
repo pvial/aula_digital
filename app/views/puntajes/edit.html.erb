@@ -1,0 +1,55 @@
+<!-- Validation failure messages -->
+<% if @puntaje.errors.any? %>
+  <% @puntaje.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Edit Puntaje #<%= @puntaje.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/update_puntaje/<%= @puntaje.id %>" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for nivel_id -->
+      <div class="form-group">
+        <label for="nivel_id" class="control-label">
+          Nivel
+        </label>
+
+        <%= select_tag(:nivel_id, options_from_collection_for_select(Nivel.all, :id, :user_id, @puntaje.nivel_id), :class => "form-control") %>
+      </div>
+
+      <!-- Label and input for categoria_id -->
+      <div class="form-group">
+        <label for="categoria_id" class="control-label">
+          Categoria
+        </label>
+
+        <%= select_tag(:categoria_id, options_from_collection_for_select(Categorium.all, :id, :descripcion, @puntaje.categoria_id), :class => "form-control") %>
+      </div>
+
+      <!-- Label and input for score -->
+      <div class="form-group">
+        <label for="score" class="control-label">
+          Score
+        </label>
+
+        <input type="text" id="score" name="score" placeholder="Score" class="form-control" value="<%= @puntaje.score %>">
+      </div>
+
+      <button class="btn btn-warning">
+        Update Puntaje
+      </button>
+      or
+      <a href="/puntajes/<%= @puntaje.id %>">Cancel</a>
+    </form>
+  </div>
+</div>
